@@ -1,0 +1,39 @@
+.row {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+
+.kotak {
+  height:8; 
+  resize:none;
+  padding: 8px 20px;
+  margin-bottom: 5px 0;
+  border: 3px solid #ccc;
+  border-radius: 8px;
+  float: left;
+  width: 85%;
+}
+
+.post{
+  margin-top: 5px;
+  margin-right: 23px;
+}
+
+.attach{
+  margin-top: 5px;
+  margin-right: 3px;
+  border-radius: none;
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="login.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<style>
+		body {
+			background-color: #10171e;
+			font-family: Arial, Helvetica, sans-serif;
+		}
+	</style>
+</head>
+<body>
+	<div id="modalLogin">
+	  <form class="modal-content animate" action="layout_disparity.php">
+		<div class="imgcontainer">
+			<img src="disparity_logo_full.png" alt="Avatar" class="avatar">
+		</div>
+	    <div class="container">
+			<label for="uname" style="color:white;"><b>Username</b></label>
+			<input type="text" placeholder="Enter Username" name="uname" class="input" required>
+
+			<label for="psw" style="color:white;"><b>Password</b></label>
+			<input type="password" placeholder="Enter Password" name="psw" class="input" required>
+	        
+			<div style="margin-top: 20px;">
+				<button type="submit" onclick="document.getElementById('id01').style.display='none'" class="loginbtn">Login</button>
+				<button type="button" onclick="document.getElementById('id01').style.display='none'" class="signupbtn" href="#modalRegister" data-toggle="modal" data-dismiss="modal">Register</button>
+			</div>   
+	    </div>
+	  </form>
+	</div>
+
+	<div id="modalRegister">
+	  <form class="modal-content animate" action="layout_disparity.php">
+		<div class="imgcontainer">
+			<img src="disparity_logo_full.png" alt="Avatar" class="avatar">
+		</div>
+	    <div class="container">
+			<label for="uname" style="color:white;"><b>Username</b></label>
+			<input type="text" placeholder="Enter Username" name="uname" class="input" required>
+
+			<label for="psw" style="color:white;"><b>Password</b></label>
+			<input type="password" placeholder="Enter Password" name="psw" class="input" required>
+	        
+			<div style="margin-top: 20px;">
+				<button type="submit" onclick="document.getElementById('id01').style.display='none'" class="loginbtn">Register</button>
+				<button type="button" onclick="document.getElementById('id01').style.display='none'" class="signupbtn" href="#modalLogin" data-toggle="modal" data-dismiss="modal">Cancel</button>
+			</div>   
+	    </div>
+	  </form>
+	</div>
+
+</body>
+</html>
