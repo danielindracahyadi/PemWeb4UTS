@@ -27,7 +27,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
   
   <div class="w3-bar-item w3-right w3-padding-large ">
     <a href="login.php">
-      <img src="logout.png" style="width: 100px; position: relative;"> 
+      <img src="logout.png"  name="nameLogOut" id="idLogOut" style="width: 100px; position: relative;"> 
     </a>
   </div>
  </div>
@@ -135,18 +135,30 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 
  
 <script>
-// Accordion
-function myFunction(id) {
-  var x = document.getElementById(id);
-  if (x.className.indexOf("w3-show") == -1) {
-    x.className += " w3-show";
-    x.previousElementSibling.className += " w3-theme-d1";
-  } else { 
-    x.className = x.className.replace("w3-show", "");
-    x.previousElementSibling.className = 
-    x.previousElementSibling.className.replace(" w3-theme-d1", "");
+
+  var btn = document.getElementById('idLogOut');
+    btn.addEventListener('click', function() {
+      $.ajax({
+        url:"action_logout.php",
+        type:"GET",
+        success:function(data) {
+          document.location.href = 'login.php';
+        }
+      });
+    });
+    
+  // Accordion
+  function myFunction(id) {
+    var x = document.getElementById(id);
+    if (x.className.indexOf("w3-show") == -1) {
+      x.className += " w3-show";
+      x.previousElementSibling.className += " w3-theme-d1";
+    } else { 
+      x.className = x.className.replace("w3-show", "");
+      x.previousElementSibling.className = 
+      x.previousElementSibling.className.replace(" w3-theme-d1", "");
+    }
   }
-}
 
 </script>
 
