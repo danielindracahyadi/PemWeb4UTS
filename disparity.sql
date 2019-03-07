@@ -3,7 +3,7 @@ CREATE TABLE usr (
     passUser VARCHAR(255) NOT NULL,
     tag INTEGER, 
     email VARCHAR(255) NOT NULL,
-    profilPicture VARCHAR(2000),
+    profilePicture VARCHAR(2000),
     salt VARCHAR(255)
 ) ENGINE=InnoDB;
 
