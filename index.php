@@ -1,8 +1,9 @@
 <?php 
 	session_start();
+ 	require 'awal.php';
 	if(isset($_SESSION['id'])){ 
-		require 'layout_disparity.php';
+		readfile('layout_disparity.php');
 	}else{ 
-		require 'login.php';  	
+		readfile('login.php');
 	}
-?>
+?>	
