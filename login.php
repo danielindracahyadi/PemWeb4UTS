@@ -16,7 +16,7 @@
 	</style>
 </head>
 <body>
-	<?php require 'awal.php'; ?>
+	
 	<div style="margin: 25px">
 	
 	<div id="modalLogin">
@@ -26,8 +26,8 @@
 				<img src="disparity_logo_full.png" alt="Avatar" class="avatar">
 			</div>
 		    <div class="container">
-				<label for="uname" style="color:white;"><b>Username</b></label>
-				<input type="text" placeholder="Enter Username" name="uname" class="input" required>
+				<label for="uname" style="color:white;"><b>Email</b></label>
+				<input type="text" placeholder="Enter E-Mail" name="email" class="input" required>
 				<label for="psw" style="color:white;"><b>Password</b></label>
 				<input type="password" placeholder="Enter Password" name="psw" class="input" required>
 		        
@@ -46,8 +46,7 @@
 <script>
 	$(document).ready(function() {
 		$("#formModalLogin").submit(function() {
-			var dataform = $(this).serialize();
-			
+			var dataform = $(this).serialize();	
 			$.ajax({
 				url:"action_modalLogin.php",
 				type:"post",
@@ -62,24 +61,7 @@
 			});
 			return false;
 		});
-		$("#formModalRegister").submit(function() {
-			var dataform = $(this).serialize();
-			
-			$.ajax({
-				url:"action_register.php",
-				type:"post",
-				data:dataform,
-				success:function(data) {
-					if(data == "gagal"){
-						alert("Email or Password not exist.");
-					} else{
-						//alert(data);
-						location.reload()
-					}
-				}
-			});
-			return false;
-		});
+
 	});
 	function funcLogOut(){
 			$.ajax({

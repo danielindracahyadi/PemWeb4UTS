@@ -16,26 +16,23 @@
 	</style>
 </head>
 <body>
-	<?php require 'awal.php'; ?>
+
 	<div style="margin: 25px">
 	
 	<div id="modalRegister">
 		<div class="modal-dialog">
-		  <form class="modal-content animate">
+		  <form class="modal-content animate" method="post" id="formModalRegister">
 			<div class="imgcontainer">
 				<img src="disparity_logo_full.png" alt="Avatar" class="avatar">
 			</div>
 		    <div class="container" style="text-align:center; color:white;">
-				<form method="">
-					<input type="text" placeholder="First Name" name="uname" class="input" style="width:49%" required>
-					<input type="text" placeholder="Last Name" name="uname" class="input" style="width:49%" required>
-					<input type="email" placeholder="Email" name="email" class="input" required>
-					<input type="password" placeholder="Password" name="psw" class="input" required>
-					<input type="date" name="bday" required>
-					<input type="radio" name="gender" value="male"> Male
-					<input type="radio" name="gender" value="female"> Female
-				</form>
-		        
+				<input type="text" placeholder="First Name" name="fnameReg" class="input" style="width:49%" required>
+				<input type="text" placeholder="Last Name" name="lnameReg" class="input" style="width:49%" required>
+				<input type="email" placeholder="Email" name="emailReg" class="input" required>
+				<input type="password" placeholder="Password" name="pswReg" class="input" required>
+				<input type="date" name="bdayReg" required>
+				<input type="radio" name="genderReg" value="male"> Male
+				<input type="radio" name="genderReg" value="female"> Female
 				<div style="margin-top: 20px;">
 					<button type="submit" class="regisbtn">Register</button>
 					<a href="login.php">
@@ -49,41 +46,20 @@
 	</div>
 <script>
 	$(document).ready(function() {
-		$("#formModalLogin").submit(function() {
-			var dataform = $(this).serialize();
-			
-			$.ajax({
-				url:"action_modalLogin.php",
-				type:"post",
-				data:dataform,
-				success:function(data) {
-					if(data == "gagal"){
-						alert("Email or Password not exist.");
-					} else{
-						 document.location.href = 'layout_disparity.php';
-					}
-				}
-			});
-			return false;
-		});
 		$("#formModalRegister").submit(function() {
 			var dataform = $(this).serialize();
-			
 			$.ajax({
 				url:"action_register.php",
 				type:"post",
 				data:dataform,
 				success:function(data) {
-					if(data == "gagal"){
-						alert("Email or Password not exist.");
-					} else{
-						//alert(data);
-						location.reload()
-					}
+					alert(data);
+					//document.location.href = 'layout_disparity.php';
 				}
 			});
 			return false;
 		});
+
 	});
 	function funcLogOut(){
 			$.ajax({

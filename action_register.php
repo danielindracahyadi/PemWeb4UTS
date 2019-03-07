@@ -3,25 +3,32 @@
 
 	$host = "localhost";
 	$username = "root";
-	$dbname = "mahasiswaDB";
+	$dbname = "disparity";
 	$password = "";
 	$dict = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	$res = "";
 	for($i=0; $i<8;$i++){
 		$res .= $dict[rand(0,strlen($dict)-1)];
 	}
-
-        $emailCek = $_POST['inEmailReg'];
-        $passCek = $_POST['inPassReg'];
-        $hash = $passCek . $res;
+	$tag = "";
+	for($i=0; $i<5;$i++){
+		$tag .= $dict[rand(0,strlen($dict)-1)];
+	}
+		$firstName = $_POST['fnameReg'];
+		$lastName = $_POST['lnameReg'];
+        $email = $_POST['emailReg'];
+        $pass = $_POST['pswReg'];
+        $date = $_POST['bdayReg'];
+        $gender = $_POST['genderReg'];
+        $hash = $pass . $res;
     	$hash = md5($hash);
 
         $con = new mysqli($host, $username, $password, $dbname);
-        $queryAdd = "INSERT INTO user (email, pass, salt) VALUES ('$emailCek', '$hash', '$res')";
-        echo $queryAdd;
+        $queryAdd = "INSERT INTO usr (email, passUser, tag, profilePicture, salt, firstName, lastName, birthDate, gender) VALUES ('$email', '$hash', '$tag', NULL, '$res', '$firstName', '$lastName', '$date', '$gender')";
+        
         mysqli_query($con, $queryAdd);
-        mysqli_close($con);
+        
 
-    	$_SESSION['id'] = $_POST['inEmailReg'];
-	
+    	$_SESSION['id'] = $_POST['emailReg'];
+		echo $queryAdd;
 ?>

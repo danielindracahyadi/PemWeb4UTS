@@ -3,24 +3,24 @@
 
 	$host = "localhost";
 	$username = "root";
-	$dbname = "mahasiswaDB";
+	$dbname = "disparity";
 	$password = "";
 
 	if ( ! empty( $_POST ) ) {
-	    if ( isset( $_POST['inEmail'] ) && isset( $_POST['inPass'] ) ) {
-	        $emailCek = $_POST['inEmail'];
-	        $passCek = $_POST['inPass'];
+	    if ( isset( $_POST['email'] ) && isset( $_POST['psw'] ) ) {
+	        $userCek = $_POST['email'];
+	        $passCek = $_POST['psw'];
 	        $con = new mysqli($host, $username, $password, $dbname);
-	        $stmt = "SELECT * FROM user WHERE email = '$emailCek'";
-
+	        $stmt = "SELECT * FROM usr WHERE email = '$userCek'";
+	        
 	        $result = mysqli_query($con, $stmt);
 	    	$user = mysqli_fetch_array($result);
-	    	mysqli_close($con);
 	    	$hash = $passCek . $user['salt'];
+
 	    	$hash = md5($hash);
-	    	//echo $user['pass'];
-	    	if ( $hash == $user['pass'] ) {
-	    		$_SESSION['id'] = $_POST['inEmail'];
+	    	//echo "gagal";
+	    	if ( $hash == $user['passUser'] ) {
+	    		$_SESSION['id'] = $_POST['email'];
 	    	} else {
 	    		echo "gagal";
 	    	}
