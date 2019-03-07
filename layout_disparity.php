@@ -7,12 +7,40 @@
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="main.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="main.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-<style>
+<style> 
 html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
+*{
+  box-sizing: border-box;
+}
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.column {
+  float: left;
+  width: 50%;
+  padding: 10px;
+}
+.postbtn{
+  margin-top: 10px;
+  font-size: 15px;
+  background-image: linear-gradient(to right, #11998e, #38ef7d);
+  border: none;
+  border-radius: 50px;
+  width: 100%;
+  text-align: center;
+  opacity: 5;
+  transition: 0.8s;
+}
+.postbtn:hover{
+  background-color: #11998e;
+  color: white;
+}
 </style>
 <body class="w3-theme-l5">
 
@@ -27,7 +55,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
   
   <div class="w3-bar-item w3-right w3-padding-large ">
     <a href="login.php">
-      <img src="logout.png"  name="nameLogOut" id="idLogOut" style="width: 100px; position: relative;"> 
+      <img src="logout.png" style="width: 100px; position: relative; padding-top: 5px;"> 
     </a>
   </div>
  </div>
@@ -53,12 +81,15 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
         <div class="w3-col m12">
           <div class="w3-card w3-round" style="background-color: #15202b; color: white; border: 1px solid; border-color: #2c7062;">
             <div class="w3-container w3-padding">
-             <img src="avatar.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="margin-top:20px; width:60px;"><br>
-
-              <textarea id="subject" name="subject" placeholder="Write something.." rows="5" class="kotak" maxlength="250" style="background-color: #10171e; color: white; border: 1px solid; border-color: #2c7062;"></textarea>
-              <div>
-                <button type="button"></button>
-                <button type="button"></button>
+              <div class="row">
+                <div class="column">
+                  <img src="avatar.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="margin-top:20px; width:60px;"><br>
+                  <a href="#" class="w3-left w3-margin-right attach "><img src="attach.png" style="width: 30px;"></a>
+                </div>
+                <div class="column">
+                  <textarea id="subject" name="subject" placeholder="Write something.." rows="5" class="kotak" maxlength="250" style="background-color: #10171e; color: white; border: 1px solid; border-color: #2c7062;"></textarea>
+                  <button class="postbtn">Post</button>
+                </div>
               </div>
             </div>
           </div>
@@ -135,30 +166,18 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 
  
 <script>
-
-  var btn = document.getElementById('idLogOut');
-    btn.addEventListener('click', function() {
-      $.ajax({
-        url:"action_logout.php",
-        type:"GET",
-        success:function(data) {
-          document.location.href = 'login.php';
-        }
-      });
-    });
-    
-  // Accordion
-  function myFunction(id) {
-    var x = document.getElementById(id);
-    if (x.className.indexOf("w3-show") == -1) {
-      x.className += " w3-show";
-      x.previousElementSibling.className += " w3-theme-d1";
-    } else { 
-      x.className = x.className.replace("w3-show", "");
-      x.previousElementSibling.className = 
-      x.previousElementSibling.className.replace(" w3-theme-d1", "");
-    }
+// Accordion
+function myFunction(id) {
+  var x = document.getElementById(id);
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+    x.previousElementSibling.className += " w3-theme-d1";
+  } else { 
+    x.className = x.className.replace("w3-show", "");
+    x.previousElementSibling.className = 
+    x.previousElementSibling.className.replace(" w3-theme-d1", "");
   }
+}
 
 </script>
 
