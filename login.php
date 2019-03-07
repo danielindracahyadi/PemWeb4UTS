@@ -21,7 +21,7 @@
 
 	<div id="modalLogin">
 		<div class="modal-dialog">
-		  <form class="modal-content animate" action="layout_disparity.php" method="post" id="formModalLogin">
+		  <form class="modal-content animate" method="post" id="formModalLogin">
 			<div class="imgcontainer">
 				<img src="disparity_logo_full.png" alt="Avatar" class="avatar">
 			</div>
@@ -43,7 +43,7 @@
 
 	<div id="modalRegister" class="modal hide">
 		<div class="modal-dialog">
-		  <form class="modal-content animate" action="layout_disparity.php">
+		  <form class="modal-content animate">
 			<div class="imgcontainer">
 				<img src="disparity_logo_full.png" alt="Avatar" class="avatar">
 			</div>
@@ -79,8 +79,6 @@
 					if(data == "gagal"){
 						alert("Email or Password not exist.");
 					} else{
-						//alert(data);
-						//location.reload()
 						 document.location.href = 'layout_disparity.php';
 					}
 				}
