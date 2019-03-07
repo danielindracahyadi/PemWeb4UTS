@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="login.css">
+	<link rel="stylesheet" type="text/css" href="register.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
@@ -19,29 +19,33 @@
 	<?php require 'awal.php'; ?>
 	<div style="margin: 25px">
 	
-	<div id="modalLogin">
+	<div id="modalRegister">
 		<div class="modal-dialog">
-		  <form class="modal-content animate" method="post" id="formModalLogin">
+		  <form class="modal-content animate">
 			<div class="imgcontainer">
 				<img src="disparity_logo_full.png" alt="Avatar" class="avatar">
 			</div>
-		    <div class="container">
-				<label for="uname" style="color:white;"><b>Username</b></label>
-				<input type="text" placeholder="Enter Username" name="uname" class="input" required>
-				<label for="psw" style="color:white;"><b>Password</b></label>
-				<input type="password" placeholder="Enter Password" name="psw" class="input" required>
+		    <div class="container" style="text-align:center; color:white;">
+				<form method="">
+					<input type="text" placeholder="First Name" name="uname" class="input" style="width:49%" required>
+					<input type="text" placeholder="Last Name" name="uname" class="input" style="width:49%" required>
+					<input type="email" placeholder="Email" name="email" class="input" required>
+					<input type="password" placeholder="Password" name="psw" class="input" required>
+					<input type="date" name="bday" required>
+					<input type="radio" name="gender" value="male"> Male
+					<input type="radio" name="gender" value="female"> Female
+				</form>
 		        
 				<div style="margin-top: 20px;">
-					<button type="submit" class="loginbtn">Login</button>
-					<a href="register.php">
-						<button type="button" class="signupbtn" href="#register.php">Register</button>
+					<button type="submit" class="regisbtn">Register</button>
+					<a href="login.php">
+						<button type="button" class="cancelbtn">Cancel</button>
 					</a>
 				</div>   
 		    </div>
 		  </form>
 		</div>
 	</div>
-	
 	</div>
 <script>
 	$(document).ready(function() {

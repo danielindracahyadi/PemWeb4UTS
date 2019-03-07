@@ -8,7 +8,6 @@ input[type=text], input[type=password], input[type=email], input[type=date]{
   box-sizing: border-box;
 }
 
-
 /* Set a style for all buttons */
 button {
   background-color: #4CAF50;
@@ -37,7 +36,7 @@ img.avatar {
 }
 
 .container {
-  padding: 50px 50px 75px 50px; 
+  padding: 10px 40px 10px 40px; 
 }
 
 span.psw {
@@ -97,7 +96,7 @@ span.psw {
   border-radius: 50px;
 }
 
-.loginbtn{
+.regisbtn{
   margin-top: 10px;
   font-size: 15px;
   background-image: linear-gradient(to right, #ff00cc, #5b86e5);
@@ -109,15 +108,15 @@ span.psw {
   transition: 0.8s;
 }
 
-.loginbtn:hover {
+.regisbtn:hover {
   background-color: #ff00cc;
   color: white;
 }
 
-.signupbtn {
+.cancelbtn {
   margin-top: 10px;
   font-size: 15px;
-  background-image: linear-gradient(to right, #11998e, #38ef7d);
+  background-image: linear-gradient(to right, #f00000, #ff501e);
   border: none;
   border-radius: 50px;
   width: 100%;
@@ -126,8 +125,8 @@ span.psw {
   transition: 0.8s;
 }
 
-.signupbtn:hover{
-  background-color: #11998e;
+.cancelbtn:hover{
+  background-color: #f00000;
   color: white;
 }
 
