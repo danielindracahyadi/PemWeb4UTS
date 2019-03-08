@@ -54,8 +54,11 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
   <img src="disparity.png" style=" margin-left: -150px; margin-right: 150px; top: 50%; left: 50%; transform: translate(-50%, -50%); position: relative; width: 100px; padding-top: 50px;">
   
   <div class="w3-bar-item w3-right w3-padding-large ">
+    <a href="layout_disparity.php">
+    <img src="avatar.png" class="w3-circle" style="height:50px;width:50px;position: relative;" alt="Avatar">
+    </a>
     <a href="login.php">
-      <img src="logout.png" style="width: 100px; position: relative; padding-top: 5px;"> 
+      <img src="logout.png" style="width: 90px; position: relative;"> 
     </a>
   </div>
  </div>
