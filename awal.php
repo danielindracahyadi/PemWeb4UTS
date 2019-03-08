@@ -4,10 +4,10 @@ $username = "root";
 $dbname = "disparity";
 $password = "";
 
-$conn = new PDO("mysql:host=$host",$username,$password);
-$conn->query("CREATE DATABASE DISPARITY");
+$con = new PDO("mysql:host=$host",$username,$password);
+$con->query("CREATE DATABASE DISPARITY");
 
-$conn = new PDO("mysql:host=$host;dbname=$dbname;",$username,$password);
+$con = new PDO("mysql:host=$host;dbname=$dbname;",$username,$password);
 
 $sqlCreate = "
 CREATE TABLE usr (
@@ -22,32 +22,28 @@ CREATE TABLE usr (
     gender VARCHAR(10) NOT NULL
 )";
 
-$conn->exec($sqlCreate);
+$con->exec($sqlCreate);
 
 $sqlCreate2 = "CREATE TABLE content(
-	contentId VARCHAR(255) PRIMARY KEY NOT NULL,
+	contentId int(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	captionContent VARCHAR(350),
 	picture VARCHAR(100),
-	upVote VARCHAR(255),
-	downVote VARCHAR(255),
-	commentId INTEGER,
+	upVote int(10),
+	downVote int(10),
 	contentDate DATE,
 	contentTime TIME,
-    tag INTEGER,
-    username VARCHAR(255) NOT NULL
+    tag VARCHAR(5)
 )";
-$conn->exec($sqlCreate2);
+$con->exec($sqlCreate2);
 
 $sqlCreate3 = "CREATE TABLE comment (
-	commentId VARCHAR(255) PRIMARY KEY NOT NULL,
+	commentId int(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	commentText VARCHAR(255),
-	tag INTEGER,
+	tag varchar(5),
 	commentDate DATE,
 	commentTime TIME,
-	contentId VARCHAR(255),
-    username VARCHAR(255)
+	contentId int(6)
 )";
-$conn->exec($sqlCreate3);
-
+$con->exec($sqlCreate3);
 
 ?>

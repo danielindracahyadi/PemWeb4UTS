@@ -1,3 +1,6 @@
+<?php 
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <title>Disparity</title>
@@ -54,19 +57,18 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
   <img src="disparity.png" style=" margin-left: -150px; margin-right: 150px; top: 50%; left: 50%; transform: translate(-50%, -50%); position: relative; width: 100px; padding-top: 50px;">
   
   <div class="w3-bar-item w3-right w3-padding-large ">
-    <a href="layout_disparity.php">
+    <a href="#">
     <img src="avatar.png" class="w3-circle" style="height:50px;width:50px;position: relative;" alt="Avatar">
     </a>
     <a href="login.php">
-      <img src="logout.png" style="width: 90px; position: relative;"> 
+      <img src="logout.png" name="nameLogOut" id="idLogOut" style="width: 90px; position: relative;"> 
     </a>
   </div>
+
  </div>
 </div>
+<!-- End Navbar -->
 
-
-
-<!-- Page Container -->
 <div class="w3-container w3-content" style="max-width:100%;margin-top:10px; background-color: #10171e;"> 
   <div><br><br><br><br></div>   
   <!-- The Grid -->
@@ -90,15 +92,17 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
                   <a href="#" class="w3-left w3-margin-right attach "><img src="attach.png" style="width: 30px;"></a>
                 </div>
                 <div class="column">
-                  <textarea id="subject" name="subject" placeholder="Write something.." rows="5" class="kotak" maxlength="250" style="background-color: #10171e; color: white; border: 1px solid; border-color: #2c7062;"></textarea>
-                  <button class="postbtn">Post</button>
+            	<form method="post" id="idFormPost">
+					<textarea id="subject" name="isiPost" placeholder="Write something.." rows="5" class="kotak" maxlength="250" style="background-color: #10171e; color: white; border: 1px solid; border-color: #2c7062;"></textarea>
+					<button type="submit" class="postbtn">Post</button>
+            	</form>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      
+      <!-- POSTINGAN -->
       <div class="w3-container w3-card w3-round w3-margin" style="background-color: #15202b; color: white; border: 1px solid; border-color: #2c7062;"><br>
         <img src="avatar.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
         <h4>John Doe</h4><br>
@@ -115,17 +119,40 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
         <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
         <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button> 
       </div>
-      
+
+    <?php 
+    	$host = "localhost";
+		$username = "root";
+		$dbname = "disparity";
+		$password = "";
+
+		$con = new mysqli($host, $username, $password, $dbname);
+
+		$idnya = $_SESSION['id'];
+		$queryPribadi = "SELECT * from usr where email='$idnya'";
+		$result = mysqli_query($con, $queryPribadi);
+		// if (!$check1_res) {
+		//     printf("Error: %s\n", mysqli_error($con));
+		//     exit();
+		// }
+		$user = mysqli_fetch_array($result);
+
+		$queryContent = "SELECT * FROM content ORDER BY contentId DESC";
+		$result = $con->query($queryContent);
+		
+		foreach ($result as $caption):
+		?>
+     	<!-- yang ini tolong jangan diubah, ubah yg atas aja ntar gw samain ke yg sini -->
       <div class="w3-container w3-card w3-round w3-margin" style="background-color: #15202b; color: white; border: 1px solid; border-color: #2c7062;"><br>
         <img src="avatar.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
-        <h4>Jane Doe</h4><br>
+        <h4><?=$user['firstName'];?></h4><br>
         <hr class="w3-clear">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <p><?=$caption['captionContent'];?></p>
         <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
         <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button> 
       </div>  
+  <?php endforeach; ?>  
 
-     
     <!-- End Column 2 -->
     </div>
     
@@ -169,6 +196,38 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 
  
 <script>
+$(document).ready(function() {
+	$("#idFormPost").submit(function() {
+		var dataform = $(this).serialize();	
+		$.ajax({
+			url:"save_posting.php",
+			type:"post",
+			data:dataform,
+			success:function(data) {
+				if(data == "gagal"){
+					alert("Email or Password not exist.");
+				} else{
+					//alert(data);
+					location.reload();
+				}
+			}
+		});
+		return false;
+	});
+
+});
+
+var btn = document.getElementById('idLogOut');
+    btn.addEventListener('click', function() {
+      $.ajax({
+        url:"action_logout.php",
+        type:"GET",
+        success:function(data) {
+          document.location.href = 'index.php';
+        }
+      });
+    });
+
 // Accordion
 function myFunction(id) {
   var x = document.getElementById(id);

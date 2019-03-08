@@ -27,8 +27,5 @@
         $queryAdd = "INSERT INTO usr (email, passUser, tag, profilePicture, salt, firstName, lastName, birthDate, gender) VALUES ('$email', '$hash', '$tag', NULL, '$res', '$firstName', '$lastName', '$date', '$gender')";
         
         mysqli_query($con, $queryAdd);
-        
-
-    	$_SESSION['id'] = $_POST['emailReg'];
-		echo $queryAdd;
+		echo "New Account Created. Account: " . $_POST['emailReg'];
 ?>

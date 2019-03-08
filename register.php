@@ -54,32 +54,14 @@
 				data:dataform,
 				success:function(data) {
 					alert(data);
-					//document.location.href = 'layout_disparity.php';
+					document.location.href = 'login.php';
 				}
 			});
 			return false;
 		});
 
 	});
-	function funcLogOut(){
-			$.ajax({
-				url:"action_logout.php",
-				type:"GET",
-				success:function(data) {
-					location.reload();
-				}
-			});
-		}
-	function funcRegister(){
-		$.ajax({
-			url:"action_register.php",
-			type:"GET",
-			success:function(data) {
-				alert(data);
-				//location.reload();
-			}
-		});
-	}
+
 	function reload(){
 		location.reload();
 	}

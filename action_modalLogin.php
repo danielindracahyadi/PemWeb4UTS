@@ -21,6 +21,7 @@
 	    	//echo "gagal";
 	    	if ( $hash == $user['passUser'] ) {
 	    		$_SESSION['id'] = $_POST['email'];
+	    		$_SESSION['tag'] = $user['tag'];
 	    	} else {
 	    		echo "gagal";
 	    	}
