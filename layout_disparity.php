@@ -256,11 +256,20 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
               echo "<table>";
                 echo "<tr>";
                   echo "<td>";
-                    echo "<img src=" . '"avatar.png"' . "alt=" . '"Forest"' . "style=" . '"width: 50px;"' . ">";
+                    echo "<a href='#' value = '". $row['email'] ."''>";
+                      echo "<img src=" . '"avatar.png"' . "alt=" . '"Forest"' . "style=" . '"width: 50px;"' . ">";
+                    echo "</a>";
+                  echo "</td>";
                   echo "<td>";
+                    // echo "<a href='#' value = '". $row['email'] ."''>";
+                      echo "<p class=" . '"w3-left"' . "style=" . '"margin-left: 10px;"' . ">" . $friend_firstname . " " . $friend_lastname . "</p>";
+                    // echo "</a>";
+                  echo "</td>";
+                echo "</tr>";
+                echo "<tr>";
                   echo "<td>";
-                    echo "<p class=" . '"w3-left"' . "style=" . '"margin-left: 10px;"' . ">" . $friend_firstname . " " . $friend_lastname . "</p>";
-                  echo "<td>";
+                    echo "&nbsp;";
+                  echo "</td>";
                 echo "</tr>";
               echo "</table>";
             }
