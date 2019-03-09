@@ -162,20 +162,125 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
       <div class="w3-card w3-round w3-center" style="background-color: #15202b; color: white; border: 1px solid; border-color: #2c7062;">
         <div class="w3-container">
           <img src="avatar.png" alt="Avatar" style="width:50%; padding-top: 10px;"><br>
-          <span>Jane Doe</span>
-          <p style="text-align:left; padding-left: 5px;">HELO.</p>
+          <span>
+            <!-- edit Fian 9/03/2019 -->
+            <?php 
+              $host = "localhost";
+              $username = "root";
+              $dbname = "disparity";
+              $password = "";
+              
+              $con = new mysqli($host, $username, $password, $dbname);
+              $cekUser = $_SESSION["id"];
+              $stmt = "SELECT * FROM usr WHERE email = '$cekUser'";
+              $result = mysqli_query($con, $stmt);
+              $user = mysqli_fetch_array($result);
+              mysqli_close($con);
+
+              echo $user["firstName"] . " " . $user["lastName"];
+            ?>
+          </span>
+          <p style="text-align:left; padding-left: 5px;">
+            <!-- edit Fian 9/03/2019 -->
+            <?php
+              $host = "localhost";
+              $username = "root";
+              $dbname = "disparity";
+              $password = "";
+              
+              $con = new mysqli($host, $username, $password, $dbname);
+              $cekUser = $_SESSION["id"];
+              $stmt = "SELECT * FROM usr WHERE email = '$cekUser'";
+              $resultuser = mysqli_query($con, $stmt);
+              $user = mysqli_fetch_array($resultuser);
+
+              mysqli_close($con);
+
+              echo "<br>";
+              echo "Hello, ";
+              echo '<b>' . $user["firstName"] . " " . $user["lastName"] . '</b><br><br>';
+              echo "Here your Profile, ";
+              echo '<b>' . $user["firstName"] . '</b>' . '<br>';
+
+              echo "Email    : ";
+              echo $user["email"] . '<br>';
+
+              echo "Birthday : ";
+              echo $user["birthDate"] . '<br>';
+
+              $host = "localhost";
+              $username = "root";
+              $dbname = "disparity";
+              $password = "";
+              
+              $con = new mysqli($host, $username, $password, $dbname);
+              $stmt = "SELECT * FROM usr";
+              $connStatus = $con->query($stmt);
+              $numberOfRows = mysqli_num_rows($connStatus) - 1;
+              mysqli_close($con);
+
+              echo "Friends  : ";
+              echo $numberOfRows . " friends";
+            ?>
+          </p>
         </div>
       </div>
       <br>
       <div class="w3-card w3-round w3-center" style="background-color: #15202b; color: white; border: 1px solid; border-color: #2c7062;">
         <div class="w3-container">
           <p align="left" style="padding-top: 5px">Friend List:</p>
-          <div class="w3-left" style="padding-bottom: 10px">
-            <img src="avatar.png" alt="Forest" style="width: 50px;">
-          </div>
-          <div >
-            <p class="w3-left" style="margin-left: 10px;">Name</p>
-          </div><br>
+          <!-- edit Fian 9/03/2019 -->
+          <?php
+            $host = "localhost";
+            $username = "root";
+            $dbname = "disparity";
+            $password = "";
+              
+            $con = new mysqli($host, $username, $password, $dbname);
+            $stmt = "SELECT * FROM usr";
+            $connStatus = $con->query($stmt);
+            $numberOfRows = mysqli_num_rows($connStatus) - 1;
+
+            $cekUser = $_SESSION["id"];
+            $stmtfriendlist = "SELECT * FROM usr WHERE email != '$cekUser'";
+            $resultfriend = mysqli_query($con, $stmtfriendlist);
+            $friends = mysqli_fetch_array($resultfriend);
+
+            $result = mysqli_query($con, $stmtfriendlist);
+
+            while($row = mysqli_fetch_assoc($result))
+            {
+              $friend_firstname = $row['firstName'];
+              $friend_lastname = $row['lastName'];
+
+              echo "<table>";
+                echo "<tr>";
+                  echo "<td>";
+                    echo "<img src=" . '"avatar.png"' . "alt=" . '"Forest"' . "style=" . '"width: 50px;"' . ">";
+                  echo "<td>";
+                  echo "<td>";
+                    echo "<p class=" . '"w3-left"' . "style=" . '"margin-left: 10px;"' . ">" . $friend_firstname . " " . $friend_lastname . "</p>";
+                  echo "<td>";
+                echo "</tr>";
+              echo "</table>";
+            }
+
+            mysqli_close($con);
+
+            // for($i= 0; $i<$numberOfRows; $i++)
+            // {
+            //   echo "<table>";
+            //     echo "<tr>";
+            //       echo "<td>";
+            //         echo "<img src=" . '"avatar.png"' . "alt=" . '"Forest"' . "style=" . '"width: 50px;"' . ">";
+            //       echo "<td>";
+            //       echo "<td>";
+            //         echo "<p class=" . '"w3-left"' . "style=" . '"margin-left: 10px;"' . ">" . $friends["firstName"] . " " . $friends["lastName"] . "</p>";
+            //       echo "<td>";
+            //     echo "</tr>";
+            //   echo "</table>";
+            // }
+          ?>
         </div>
       </div>
       <br>
