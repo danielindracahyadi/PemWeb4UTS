@@ -14,17 +14,16 @@ session_start();
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="main.css">
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-
-<script src="https://rawgit.com/jackmoore/autosize/master/dist/autosize.min.js"></script>
-
 <style> 
 html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 *{
   box-sizing: border-box;
 }
+/*FEBRY ASU tgl 10 batas atas 1*/
+
 body{
   background-color: #10171e;
 }
@@ -78,17 +77,7 @@ body{
   background-image: linear-gradient(to right, #1888ce, #5bc8ff);
   color: white;
 }
-
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-.column {
-  float: left;
-  width: 50%;
-  padding: 10px;
-}
+/*FEBRY ASU tgl 10 batas bawah 1*/
 
 .flip-card {
   margin: 10px 0 10px 0;
@@ -131,23 +120,20 @@ body{
   z-index: 1;
 }
 
-.collapsible {
-  background-color: #777;
-  color: white;
-  cursor: pointer;
-  border: none;
-  text-align: left;
-  outline: none;
-  font-size: 15px;
-}
-
-.active, .collapsible:hover {
-  background-color: #555;
+.kotak {
+  height:8; 
+  resize:none;
+  padding: 8px 20px;
+  margin-bottom: 5px 0;
+  border: 3px solid #ccc;
+  border-radius: 8px;
+  float: left;
+  width: 100%;
 }
 
 .content {
-  padding: 0;
-  max-height: 0;
+  padding: 0px;
+  max-height: 0px;
   overflow: hidden;
   transition: max-height 0.2s ease-out;
   background-color: #f1f1f1;
@@ -174,6 +160,7 @@ body{
   opacity: 5;
   transition: 0.8s;
 }
+
 .komenbtn:hover{
   background-color: #11998e;
   color: white;
@@ -182,41 +169,44 @@ body{
 </style>
 <body class="w3-theme-l5">
 
-<!-- Navbar -->
+  <!-- Navbar -->
+ <!--  FEBRY ASU tgl 10 batas atas 2-->
+
   <div class="w3-top" style="background-color: #15202b;">
     <div class="col-30">
       <a href="layout_disparity.php" class="w3-padding-large">
         <img src="disparity_logo.png" style="width:50px;">
       </a>
-
     </div>
     <div class="col-30">
       <img class="disparity" src="disparity.png">
     </div>
     <div class="col-30">
       <a href="#">
-        <img src="avatar.png" class="w3-circle" style="height:50px;width:50px;position: relative; " alt="Avatar">
+        <img src="avatar.png" class="w3-circle" style="height:50px; width: 50px; position: relative; " alt="Avatar">
       </a>
       <a href="login.php">
         <img src="logout.png" name="nameLogOut" id="idLogOut" style="width: 90px; position: relative;"> 
       </a>
     </div>
   </div>
-<!-- End Navbar -->
+  <!-- End Navbar -->
+ <!--  FEBRY ASU tgl 10 batas bawah 2-->
 
-<div class="w3-container w3-content" style="max-width:100%;margin-top:10px; background-color: #10171e;"> 
+<div class="w3-container w3-content" style="max-width: 100%; margin-top: 10px; background-color: #10171e;"> 
   <div><br><br><br><br></div>   
   <!-- The Grid -->
   <div class="w3-row">
     <!-- Column 1 -->
     <div class="w3-col m1"> 
-      -
+    	-
     <!-- End Column 1 -->
     </div>
     
     <!--  Column 2-->
-   <div class="w3-col m7">
+    <div class="w3-col m7">
 
+      <!-- FEBRY ASU tgl 10 batas atas 3-->
       <div class="w3-row-padding">
         <div class="w3-col m12" >
           <div class="w3-card w3-round" style="background-color: #15202b; color: white; border: 1px solid; border-color: #2c7062;">
@@ -225,8 +215,10 @@ body{
                 <img src="avatar.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px;"><br>
               </div>
               <div class="col-90">
+                
+                <!-- UPDATE TONY tgl 10 batas atas 1-->
                 <form id="idFormPost" method="post">
-                  <p id="idPostP" contenteditable="true" class=" w3-padding" style=" border: 1px solid; border-color: #2c7062;" placeholder="Write Something..."></p>
+                  <p id="idPostP" contenteditable="true" class=" w3-padding" style=" border: 1px solid; border-color: #2c7062;">Write Something...</p>
                   <textarea id="idPostTextarea" name="isiPost" style="display:none"></textarea>
                   <div style="text-align: center">
                     <a href="#" class="w3-left w3-margin-right attach ">
@@ -235,12 +227,15 @@ body{
                     <button type="submit" class="postbtn" style="font-size: 14px;">Post</button>
                   </div>
                 </form>
+                <!-- UPDATE TONY tgl 10 batas bawah 1-->
               </div>
             </div>
           </div>
         </div>
       </div>
-      
+      <!-- FEBRY ASU tgl 10 batas bawah 3-->
+
+
       <!-- POSTINGAN -->
       <div class="w3-container w3-card w3-round w3-margin" style="background-color: #15202b; color: white; border: 1px solid; border-color: #2c7062;"><br>
         <img src="avatar.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
@@ -255,50 +250,50 @@ body{
               <img src="/w3images/nature.jpg" style="width:100%" alt="Nature" class="w3-margin-bottom">
           </div>
         </div>
-        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
-
-        <!--Update Febry 10 Maret 2019 -->
+        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
         <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom collapsible"><i class="fa fa-comment"></i>  Comment</button> 
-        <div class="content" style="background-color: #15202b;">
-         <form id="idFormComment" method="post">
-          <p id="idCommentP" contenteditable="true" class=" w3-padding" style=" border: 1px solid; border-color: #2c7062;" placeholder="Write Something..."></p>
-           <textarea id="idCommentTextArea" name="isiComment" placeholder="Write add a comment..." rows="2" class="komen" maxlength="500" style="display: none;"></textarea>
-           <button type="submit" class="komenbtn">Post</button>
-         </form>
-        </div>
+        <div style="background-color: #15202b;">
 
+          <!-- UPDATE TONY tgl 10 batas atas 2-->
+         <form id="idFormComment" method="post">
+          <p id="idCommentP" contenteditable="true" class="w3-padding" style=" border: 1px solid; border-color: #2c7062;">Comment Something...</p>
+          <textarea id="idCommentTextArea" name="isiComment" placeholder="Write add a comment..." rows="2" class="komen" maxlength="500" style="display: none;"></textarea>
+          <button type="submit" class="postbtn" style="font-size: 14px; margin-bottom: 2%;">Comment</button>
+         </form>
+         <!-- UPDATE TONY tgl 10 batas bawah 2-->
+        </div>
       </div>
 
     <?php 
-      $host = "localhost";
-      $username = "root";
-      $dbname = "disparity";
-      $password = "";
+    	$host = "localhost";
+  		$username = "root";
+  		$dbname = "disparity";
+  		$password = "gak tahu";
 
-      $con = new mysqli($host, $username, $password, $dbname);
+  		$con = new mysqli($host, $username, $password, $dbname);
 
-      $idnya = $_SESSION['id'];
-      $queryPribadi = "SELECT * from usr where email='$idnya'";
-      $result = mysqli_query($con, $queryPribadi);
-      // if (!$check1_res) {
-      //     printf("Error: %s\n", mysqli_error($con));
-      //     exit();
-      // }
-      $user = mysqli_fetch_array($result);
+  		$idnya = $_SESSION['id'];
+  		$queryPribadi = "SELECT * from usr where email='$idnya'";
+  		$result = mysqli_query($con, $queryPribadi);
+  		// if (!$check1_res) {
+  		//     printf("Error: %s\n", mysqli_error($con));
+  		//     exit();
+  		// }
+  		$user = mysqli_fetch_array($result);
 
-      $queryContent = "SELECT * FROM content ORDER BY contentId DESC";
-      $result = $con->query($queryContent);
-      
-      foreach ($result as $caption):
-    ?>
-      <!-- yang ini tolong jangan diubah, ubah yg atas aja ntar gw samain ke yg sini -->
+  		$queryContent = "SELECT * FROM content ORDER BY contentId DESC";
+  		$result = $con->query($queryContent);
+  		
+  		foreach ($result as $caption):
+		?>
+     	<!-- yang ini tolong jangan diubah, ubah yg atas aja ntar gw samain ke yg sini -->
       <div class="w3-container w3-card w3-round w3-margin" style="background-color: #15202b; color: white; border: 1px solid; border-color: #2c7062;"><br>
         <img src="avatar.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
         <h4><?=$user['firstName'];?></h4><br>
         <hr class="w3-clear">
         <p><?=$caption['captionContent'];?></p>
-        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
-        <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button> 
+        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
+        <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button> 
       </div>  
   <?php endforeach; ?>  
 
@@ -313,7 +308,7 @@ body{
           <div class="flip-card">
             <div class="flip-card-inner">
               <div class="flip-card-front">
-                <img src="avatar.png" alt="Avatar" style="width:200px;height: 200px">
+                <img src="avatar.png" alt="Avatar" style="width:200px; height: 200px">
               </div>
               <div class="flip-card-back">
                 <!-- isi flipcard disini -->
@@ -378,7 +373,6 @@ $(document).ready(function() {
     return false;
   });
 });
-
 $(document).ready(function() {
   $("#idFormComment").submit(function() {
      document.getElementById("idCommentTextarea").value = document.getElementById("idCommentP").innerHTML;
@@ -399,7 +393,6 @@ $(document).ready(function() {
     return false;
   });
 });
-
 var btn = document.getElementById('idLogOut');
     btn.addEventListener('click', function() {
       $.ajax({
@@ -410,7 +403,6 @@ var btn = document.getElementById('idLogOut');
         }
       });
     });
-
 // Accordion
 function myFunction(id) {
   var x = document.getElementById(id);
@@ -423,11 +415,9 @@ function myFunction(id) {
     x.previousElementSibling.className.replace(" w3-theme-d1", "");
   }
 }
-
 //DropDown Comment
 var coll = document.getElementsByClassName("collapsible");
 var i;
-
 for (i = 0; i < coll.length; i++) {
   coll[i].addEventListener("click", function() {
     this.classList.toggle("active");
@@ -439,9 +429,7 @@ for (i = 0; i < coll.length; i++) {
     } 
   });
 }
-
 //autosize(document.getElementById("idCommentTextArea"));
-
 </script>
 
 </body>
