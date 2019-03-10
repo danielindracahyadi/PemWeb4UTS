@@ -210,7 +210,7 @@ body{
   <div class="w3-row">
     <!-- Column 1 -->
     <div class="w3-col m1"> 
-    	-
+      -
     <!-- End Column 1 -->
     </div>
     
@@ -225,13 +225,16 @@ body{
                 <img src="avatar.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px;"><br>
               </div>
               <div class="col-90">
-                <p contenteditable="true" class=" w3-padding" style=" border: 1px solid; border-color: #2c7062;" placeholder="Write Something..."></p>
-                <div style="text-align: center">
-                  <a href="#" class="w3-left w3-margin-right attach ">
-                    <img src="attach.png" style="width: 25px;">
-                  </a>
-                  <button type="submit" class="postbtn" style="font-size: 14px;">Post</button>
-                </div>
+                <form id="idFormPost" method="post">
+                  <p id="idPostP" contenteditable="true" class=" w3-padding" style=" border: 1px solid; border-color: #2c7062;" placeholder="Write Something..."></p>
+                  <textarea id="idPostTextarea" name="isiPost" style="display:none"></textarea>
+                  <div style="text-align: center">
+                    <a href="#" class="w3-left w3-margin-right attach ">
+                      <img src="attach.png" style="width: 25px;">
+                    </a>
+                    <button type="submit" class="postbtn" style="font-size: 14px;">Post</button>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
@@ -252,13 +255,14 @@ body{
               <img src="/w3images/nature.jpg" style="width:100%" alt="Nature" class="w3-margin-bottom">
           </div>
         </div>
-        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
+        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
 
         <!--Update Febry 10 Maret 2019 -->
-        <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom collapsible"><i class="fa fa-comment"></i>  Comment</button> 
-        <div class="content" style="background-color: #15202b;"">
-         <form>
-           <textarea id="comment" placeholder="Write add a comment..." rows="2" class="komen" maxlength="500"></textarea>
+        <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom collapsible"><i class="fa fa-comment"></i>  Comment</button> 
+        <div class="content" style="background-color: #15202b;">
+         <form id="idFormComment" method="post">
+          <p id="idCommentP" contenteditable="true" class=" w3-padding" style=" border: 1px solid; border-color: #2c7062;" placeholder="Write Something..."></p>
+           <textarea id="idCommentTextArea" name="isiComment" placeholder="Write add a comment..." rows="2" class="komen" maxlength="500" style="display: none;"></textarea>
            <button type="submit" class="komenbtn">Post</button>
          </form>
         </div>
@@ -266,35 +270,35 @@ body{
       </div>
 
     <?php 
-    	$host = "localhost";
-  		$username = "root";
-  		$dbname = "disparity";
-  		$password = "";
+      $host = "localhost";
+      $username = "root";
+      $dbname = "disparity";
+      $password = "";
 
-  		$con = new mysqli($host, $username, $password, $dbname);
+      $con = new mysqli($host, $username, $password, $dbname);
 
-  		$idnya = $_SESSION['id'];
-  		$queryPribadi = "SELECT * from usr where email='$idnya'";
-  		$result = mysqli_query($con, $queryPribadi);
-  		// if (!$check1_res) {
-  		//     printf("Error: %s\n", mysqli_error($con));
-  		//     exit();
-  		// }
-  		$user = mysqli_fetch_array($result);
+      $idnya = $_SESSION['id'];
+      $queryPribadi = "SELECT * from usr where email='$idnya'";
+      $result = mysqli_query($con, $queryPribadi);
+      // if (!$check1_res) {
+      //     printf("Error: %s\n", mysqli_error($con));
+      //     exit();
+      // }
+      $user = mysqli_fetch_array($result);
 
-  		$queryContent = "SELECT * FROM content ORDER BY contentId DESC";
-  		$result = $con->query($queryContent);
-  		
-  		foreach ($result as $caption):
-		?>
-     	<!-- yang ini tolong jangan diubah, ubah yg atas aja ntar gw samain ke yg sini -->
+      $queryContent = "SELECT * FROM content ORDER BY contentId DESC";
+      $result = $con->query($queryContent);
+      
+      foreach ($result as $caption):
+    ?>
+      <!-- yang ini tolong jangan diubah, ubah yg atas aja ntar gw samain ke yg sini -->
       <div class="w3-container w3-card w3-round w3-margin" style="background-color: #15202b; color: white; border: 1px solid; border-color: #2c7062;"><br>
         <img src="avatar.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
         <h4><?=$user['firstName'];?></h4><br>
         <hr class="w3-clear">
         <p><?=$caption['captionContent'];?></p>
-        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
-        <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button> 
+        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
+        <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button> 
       </div>  
   <?php endforeach; ?>  
 
@@ -355,24 +359,45 @@ body{
  
 <script>
 $(document).ready(function() {
-	$("#idFormPost").submit(function() {
-		var dataform = $(this).serialize();	
-		$.ajax({
-			url:"save_posting.php",
-			type:"post",
-			data:dataform,
-			success:function(data) {
-				if(data == "gagal"){
-					alert("Email or Password not exist.");
-				} else{
-					//alert(data);
-					location.reload();
-				}
-			}
-		});
-		return false;
-	});
+  $("#idFormPost").submit(function() {
+     document.getElementById("idPostTextarea").value = document.getElementById("idPostP").innerHTML;
+    var dataform = $(this).serialize(); 
+    $.ajax({
+      url:"save_posting.php",
+      type:"post",
+      data:dataform,
+      success:function(data) {
+        if(data == "gagal"){
+          alert("Gagal Post");
+        } else{
+          //alert(data);
+          location.reload();
+        }
+      }
+    });
+    return false;
+  });
+});
 
+$(document).ready(function() {
+  $("#idFormComment").submit(function() {
+     document.getElementById("idCommentTextarea").value = document.getElementById("idCommentP").innerHTML;
+    var dataform = $(this).serialize(); 
+    $.ajax({
+      url:"save_comment.php",
+      type:"post",
+      data:dataform,
+      success:function(data) {
+        if(data == "gagal"){
+          alert("Gagal Comment");
+        } else{
+          //alert(data);
+          location.reload();
+        }
+      }
+    });
+    return false;
+  });
 });
 
 var btn = document.getElementById('idLogOut');
@@ -415,7 +440,7 @@ for (i = 0; i < coll.length; i++) {
   });
 }
 
-autosize(document.getElementById("comment"));
+//autosize(document.getElementById("idCommentTextArea"));
 
 </script>
 
