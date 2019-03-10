@@ -3,6 +3,9 @@ session_start();
 ?>
 <!DOCTYPE html>
 <html>
+<head>
+  <link rel="stylesheet" type="text/css" href="main.css">
+</head>
 <title>Disparity</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,11 +17,68 @@ session_start();
 <link rel="stylesheet" type="text/css" href="main.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+<script src="https://rawgit.com/jackmoore/autosize/master/dist/autosize.min.js"></script>
+
 <style> 
 html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 *{
   box-sizing: border-box;
 }
+body{
+  background-color: #10171e;
+}
+
+.disparity{
+  /*margin-left: -150px;
+  margin-right: 150px;*/
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: relative;
+  width: 100px;
+  padding-top: 50px;
+}
+
+.col-10 {
+  float: left;
+  width: 10%;
+  padding-left: 1.5%;
+  padding-top: 4.5%;
+}
+
+.col-90 {
+  float: left;
+  width: 90%;
+  padding-left: 4%;
+  padding-top: 3%;
+}
+.col-30 {
+  float: left;
+  width: 33.3%;
+  padding-top: 10px;
+}
+
+.postbtn{
+  float: right;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  font-size: 15px;
+  background-image: linear-gradient(to right, #11998e, #38ef7d);
+  padding: 10px;
+  border: none;
+  border-radius: 50px;
+  width: 100px;
+  text-align: center;
+  opacity: 5;
+  transition: 0.8s;
+}
+
+.postbtn:hover{
+  background-image: linear-gradient(to right, #1888ce, #5bc8ff);
+  color: white;
+}
+
 .row:after {
   content: "";
   display: table;
@@ -29,21 +89,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
   width: 50%;
   padding: 10px;
 }
-.postbtn{
-  margin-top: 10px;
-  font-size: 15px;
-  background-image: linear-gradient(to right, #11998e, #38ef7d);
-  border: none;
-  border-radius: 50px;
-  width: 100%;
-  text-align: center;
-  opacity: 5;
-  transition: 0.8s;
-}
-.postbtn:hover{
-  background-color: #11998e;
-  color: white;
-}
+
 .flip-card {
   margin: 10px 0 10px 0;
   background-color: transparent;
@@ -85,29 +131,77 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
   z-index: 1;
 }
 
+.collapsible {
+  background-color: #777;
+  color: white;
+  cursor: pointer;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+.active, .collapsible:hover {
+  background-color: #555;
+}
+
+.content {
+  padding: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color: #f1f1f1;
+}
+
+.komen{
+  resize:none;
+  width: 100%;
+  color: white;
+  border: 1px solid;
+  border-color: #2c7062;
+  background-color: #10171e;   
+}
+
+.komenbtn{
+  font-size: 15px;
+  margin-top: 10px;
+  margin-left: 640px;
+  width: 20%;
+  background-image: linear-gradient(to right, #11998e, #38ef7d);
+  border: none;
+  border-radius: 50px;
+  text-align: center;
+  opacity: 5;
+  transition: 0.8s;
+}
+.komenbtn:hover{
+  background-color: #11998e;
+  color: white;
+}
+
 </style>
 <body class="w3-theme-l5">
 
 <!-- Navbar -->
-<div class="w3-top" style="background-color: #15202b;">
- <div class="w3-bar w3-left-align" >
-  <a href="layout_disparity.php" class="w3-bar-item w3-padding-large">
-    <img src="disparity_logo.png" style="width:50px;">
-  </a>
+  <div class="w3-top" style="background-color: #15202b;">
+    <div class="col-30">
+      <a href="layout_disparity.php" class="w3-padding-large">
+        <img src="disparity_logo.png" style="width:50px;">
+      </a>
 
-  <img src="disparity.png" style=" margin-left: -150px; margin-right: 150px; top: 50%; left: 50%; transform: translate(-50%, -50%); position: relative; width: 100px; padding-top: 50px;">
-  
-  <div class="w3-bar-item w3-right w3-padding-large ">
-    <a href="#">
-    <img src="avatar.png" class="w3-circle" style="height:50px;width:50px;position: relative;" alt="Avatar">
-    </a>
-    <a href="login.php">
-      <img src="logout.png" name="nameLogOut" id="idLogOut" style="width: 90px; position: relative;"> 
-    </a>
+    </div>
+    <div class="col-30">
+      <img class="disparity" src="disparity.png">
+    </div>
+    <div class="col-30">
+      <a href="#">
+        <img src="avatar.png" class="w3-circle" style="height:50px;width:50px;position: relative; " alt="Avatar">
+      </a>
+      <a href="login.php">
+        <img src="logout.png" name="nameLogOut" id="idLogOut" style="width: 90px; position: relative;"> 
+      </a>
+    </div>
   </div>
-
- </div>
-</div>
 <!-- End Navbar -->
 
 <div class="w3-container w3-content" style="max-width:100%;margin-top:10px; background-color: #10171e;"> 
@@ -121,28 +215,29 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
     </div>
     
     <!--  Column 2-->
-    <div class="w3-col m7">
-    
+   <div class="w3-col m7">
+
       <div class="w3-row-padding">
-        <div class="w3-col m12">
+        <div class="w3-col m12" >
           <div class="w3-card w3-round" style="background-color: #15202b; color: white; border: 1px solid; border-color: #2c7062;">
             <div class="w3-container w3-padding">
-              <div class="row">
-                <div class="column">
-                  <img src="avatar.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="margin-top:20px; width:60px;"><br>
-                  <a href="#" class="w3-left w3-margin-right attach "><img src="attach.png" style="width: 30px;"></a>
-                </div>
-                <div class="column">
-            	<form method="post" id="idFormPost">
-					<textarea id="subject" name="isiPost" placeholder="Write something.." rows="5" class="kotak" maxlength="250" style="background-color: #10171e; color: white; border: 1px solid; border-color: #2c7062;"></textarea>
-					<button type="submit" class="postbtn">Post</button>
-            	</form>
+              <div class="col-10">
+                <img src="avatar.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px;"><br>
+              </div>
+              <div class="col-90">
+                <p contenteditable="true" class=" w3-padding" style=" border: 1px solid; border-color: #2c7062;" placeholder="Write Something..."></p>
+                <div style="text-align: center">
+                  <a href="#" class="w3-left w3-margin-right attach ">
+                    <img src="attach.png" style="width: 25px;">
+                  </a>
+                  <button type="submit" class="postbtn" style="font-size: 14px;">Post</button>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      
       <!-- POSTINGAN -->
       <div class="w3-container w3-card w3-round w3-margin" style="background-color: #15202b; color: white; border: 1px solid; border-color: #2c7062;"><br>
         <img src="avatar.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
@@ -158,7 +253,16 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
           </div>
         </div>
         <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
-        <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button> 
+
+        <!--Update Febry 10 Maret 2019 -->
+        <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom collapsible"><i class="fa fa-comment"></i>  Comment</button> 
+        <div class="content" style="background-color: #15202b;"">
+         <form>
+           <textarea id="comment" placeholder="Write add a comment..." rows="2" class="komen" maxlength="500"></textarea>
+           <button type="submit" class="komenbtn">Post</button>
+         </form>
+        </div>
+
       </div>
 
     <?php 
@@ -294,6 +398,24 @@ function myFunction(id) {
     x.previousElementSibling.className.replace(" w3-theme-d1", "");
   }
 }
+
+//DropDown Comment
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    } 
+  });
+}
+
+autosize(document.getElementById("comment"));
 
 </script>
 
