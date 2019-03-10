@@ -1,5 +1,5 @@
 <?php 
-session_start();
+  session_start();
 ?>
 <!DOCTYPE html>
 <html>
@@ -182,12 +182,32 @@ body{
       <img class="disparity" src="disparity.png">
     </div>
     <div class="col-30">
-      <a href="#">
-        <img src="avatar.png" class="w3-circle" style="height:50px; width: 50px; position: relative; " alt="Avatar">
-      </a>
-      <a href="login.php">
-        <img src="logout.png" name="nameLogOut" id="idLogOut" style="width: 90px; position: relative;"> 
-      </a>
+      <!-- edit Fian 11/09/19 -->
+      <?php
+        $host = "localhost";
+        $username = "root";
+        $dbname = "disparity";
+        $password = "";
+        $con = new mysqli($host, $username, $password, $dbname);
+        $cekUser = $_SESSION["id"];
+        $stmt = "SELECT * FROM usr WHERE email = '$cekUser'";
+        $result = mysqli_query($con, $stmt);
+        $user = mysqli_fetch_array($result);
+        mysqli_close($con);
+
+        echo '
+          <form id = "home" method="post" action="layout_disparity.php" style="position: relative">
+            <button class = "w3-circle" name="home" type="submit" value="' . $user['tag'] . '" style="width: 50px;height=50px;padding-top=0px;padding-left=0px;padding-right=0px;padding-bottom=0px;padding-top: 0px;padding-left: 0px;padding-bottom: 0px;padding-right: 0px;border-top-width: 0px;border-left-width: 0px;border-bottom-width: 0px;border-right-width: 0px; height:50px; width: 50px; position: relative;">
+              <img src="avatar.png" style="width:50px" class="w3-circle">
+            </button>
+          <a href="login.php">
+            <img src="logout.png" name="nameLogOut" id="idLogOut" style="width: 90px; position: relative;"> 
+          </a>
+          </form>';
+
+        // bersambung . . . Belum selesai
+
+      ?>
     </div>
   </div>
   <!-- End Navbar -->
@@ -268,7 +288,7 @@ body{
     	$host = "localhost";
   		$username = "root";
   		$dbname = "disparity";
-  		$password = "gak tahu";
+  		$password = "";
 
   		$con = new mysqli($host, $username, $password, $dbname);
 
@@ -319,20 +339,127 @@ body{
             </div>
           </div>
           <!-- <img src="avatar.png" alt="Avatar" style="width:50%; padding-top: 10px;"><br> -->
-          <span>Jane Doe</span>
-          <p style="text-align:left; padding-left: 5px;">HELO.</p>
+          <!-- edit Fian 9/03/2019 -->
+          <span>
+            <?php
+              $host = "localhost";
+              $username = "root";
+              $dbname = "disparity";
+              $password = "";
+
+              $con = new mysqli($host, $username, $password, $dbname);
+              $cekUser = $_SESSION["tag"];
+              $stmt = "SELECT * FROM usr WHERE tag = '$cekUser'";
+              $result = mysqli_query($con, $stmt);
+              $user = mysqli_fetch_array($result);
+              mysqli_close($con);
+
+              echo $user["firstName"] . " " . $user["lastName"];
+            ?>
+          </span>
+          <p style="text-align:left; padding-left: 5px;">
+          <!-- edit Fian 9/03/2019 -->
+            <?php
+              $host = "localhost";
+              $username = "root";
+              $dbname = "disparity";
+              $password = "";
+              
+              $con = new mysqli($host, $username, $password, $dbname);
+              $cekUser = $_SESSION["id"];
+              $tagnya = $_SESSION['tag'];
+              $stmt = "SELECT * FROM usr WHERE tag='$tagnya'";
+              $resultuser = mysqli_query($con, $stmt);
+              $user = mysqli_fetch_array($resultuser);
+
+              mysqli_close($con);
+
+              echo "<br>";
+              echo "Hello, ";
+              echo '<b>' . $user["firstName"] . " " . $user["lastName"] . '</b><br><br>';
+              echo "Here " . '<b>' . $user["firstName"] . '</b>' . " Profile: " . '<br>';
+              
+
+              echo "Email    : ";
+              echo $user["email"] . '<br>';
+
+              echo "Birthday : ";
+              echo $user["birthDate"] . '<br>';
+
+              $host = "localhost";
+              $username = "root";
+              $dbname = "disparity";
+              $password = "";
+              
+              $con = new mysqli($host, $username, $password, $dbname);
+              $stmt = "SELECT * FROM usr";
+              $connStatus = $con->query($stmt);
+              $numberOfRows = mysqli_num_rows($connStatus) - 1;
+              mysqli_close($con);
+
+              echo "Friends  : ";
+              echo $numberOfRows . " friends";
+            ?>
+          </p>
         </div>
       </div>
       <br>
       <div class="w3-card w3-round w3-center" style="background-color: #15202b; color: white; border: 1px solid; border-color: #2c7062;">
         <div class="w3-container">
-          <p align="left" style="padding-top: 5px">Friend List:</p>
-          <div class="w3-left" style="padding-bottom: 10px">
-            <img src="avatar.png" alt="Forest" style="width: 50px;">
-          </div>
-          <div >
-            <p class="w3-left" style="margin-left: 10px;">Name</p>
-          </div><br>
+          <?php
+            $host = "localhost";
+            $username = "root";
+            $dbname = "disparity";
+            $password = "";
+              
+            $con = new mysqli($host, $username, $password, $dbname);
+            $stmt = "SELECT * FROM usr";
+            $connStatus = $con->query($stmt);
+            $numberOfRows = mysqli_num_rows($connStatus) - 1;
+
+            $cekUser = $_SESSION["id"];
+            $stmtfriendlist = "SELECT * FROM usr WHERE email != '$cekUser'";
+            $resultfriend = mysqli_query($con, $stmtfriendlist);
+            $friends = mysqli_fetch_array($resultfriend);
+
+            $result = mysqli_query($con, $stmtfriendlist);
+
+            echo "<br>";
+            echo "<table>";
+            while($row = mysqli_fetch_assoc($result))
+            {
+              $friend_firstname = $row['firstName'];
+              $friend_lastname = $row['lastName'];
+              
+                echo "<tr>";
+                  echo "<td>";
+                    echo '
+                    <form id = "id_visit_profile"  method="post" action="visit_profile.php">
+                      <button name="name_visit_profile" type="submit" value="' . $row['tag'] . '" style="width: 50px;height=50px;padding-top=0px;padding-left=0px;padding-right=0px;padding-bottom=0px;padding-top: 0px;padding-left: 0px;padding-bottom: 0px;padding-right: 0px;border-top-width: 0px;border-left-width: 0px;border-bottom-width: 0px;border-right-width: 0px;">
+                        <img src="avatar.png" style="width:50px">
+                      </button>
+                    </form>';
+
+                    // echo '
+                    // <form id = "id_visit_profile"  method="post" action="visit_profile.php">
+                    //   </button>
+                    //   <input name="name_visit_profile" type="image" src="avatar.png" value="' . $row['tag'] . '" style="width:50px">
+                    // </form>';
+
+                  echo "</td>";
+                  echo "<td>";
+                      echo "<p class=" . '"w3-left"' . "style=" . '"margin-left: 10px; color: white;"' . ">" . $friend_firstname . " " . $friend_lastname . "</p>";
+                  echo "</td>";
+                echo "</tr>";
+                echo "<tr>";
+                  echo "<td>";
+                    echo "&nbsp;";
+                  echo "</td>";
+                echo "</tr>";
+            }
+            echo "</table>";
+            mysqli_close($con);
+          ?>
         </div>
       </div>
       <br>
