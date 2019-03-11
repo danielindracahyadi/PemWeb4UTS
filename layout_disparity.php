@@ -362,7 +362,28 @@ body{
           <div class="flip-card">
             <div class="flip-card-inner">
               <div class="flip-card-front">
-                <img src="avatar.png" alt="Avatar" style="width:200px; height: 200px">
+                <?php
+                  $host = "localhost";
+                  $username = "root";
+                  $dbname = "disparity";
+                  $password = "";
+
+                  $con = new mysqli($host, $username, $password, $dbname);
+                  $cekUser = $_SESSION["tag"];
+                  $stmt = "SELECT * FROM usr WHERE tag = '$cekUser'";
+                  $result = mysqli_query($con, $stmt);
+                  $user = mysqli_fetch_array($result);
+                  mysqli_close($con);
+
+                  if ( $user["profilePicture"] != null)
+                  {
+                    echo "<img src='" . $user["profilePicture"] . "' alt='Avatar' style='width:200px; height: 200px;'>";
+                  }
+                  else
+                  {
+                    echo '<img src="avatar.png" alt="Avatar" style="width:200px; height: 200px">';
+                  }
+                ?>
               </div>
               <div class="flip-card-back">
                 <!-- isi flipcard disini -->
