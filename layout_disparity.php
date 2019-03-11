@@ -166,6 +166,11 @@ body{
   color: white;
 }
 
+[contenteditable=true]:empty:before {
+  content: attr(placeholder);
+  display: block; /* For Firefox */
+}
+
 </style>
 <body class="w3-theme-l5">
 
@@ -196,7 +201,7 @@ body{
         mysqli_close($con);
 
         echo '
-          <form id = "home" method="post" action="layout_disparity.php" style="position: relative">
+          <form id="home" method="post" style="position: relative">
             <button class = "w3-circle" name="home" type="submit" value="' . $user['tag'] . '" style="width: 50px;height=50px;padding-top=0px;padding-left=0px;padding-right=0px;padding-bottom=0px;padding-top: 0px;padding-left: 0px;padding-bottom: 0px;padding-right: 0px;border-top-width: 0px;border-left-width: 0px;border-bottom-width: 0px;border-right-width: 0px; height:50px; width: 50px; position: relative;">
               <img src="avatar.png" style="width:50px" class="w3-circle">
             </button>
@@ -217,16 +222,19 @@ body{
   <div><br><br><br><br></div>   
   <!-- The Grid -->
   <div class="w3-row">
-    <!-- Column 1 -->
-    <div class="w3-col m1"> 
-    	-
-    <!-- End Column 1 -->
-    </div>
-    
+    <!-- Column 1 --><div class="w3-col m1">-</div>
     <!--  Column 2-->
     <div class="w3-col m7">
 
       <!-- FEBRY ASU tgl 10 batas atas 3-->
+      <?php 
+      $idnya = $_SESSION['id'];
+      $con = new mysqli($host, $username, $password, $dbname);
+      $stmt = "SELECT * FROM usr WHERE email = '$idnya'";
+        
+      $result = mysqli_query($con, $stmt);
+      $user = mysqli_fetch_array($result);
+      if($_SESSION['tag'] == $user['tag']): ?>
       <div class="w3-row-padding">
         <div class="w3-col m12" >
           <div class="w3-card w3-round" style="background-color: #15202b; color: white; border: 1px solid; border-color: #2c7062;">
@@ -238,7 +246,7 @@ body{
                 
                 <!-- UPDATE TONY tgl 10 batas atas 1-->
                 <form id="idFormPost" method="post">
-                  <p id="idPostP" contenteditable="true" class=" w3-padding" style=" border: 1px solid; border-color: #2c7062;">Write Something...</p>
+                  <p id="idPostP" placeholder="Post Something..." contenteditable="true" class=" w3-padding" style=" border: 1px solid; border-color: #2c7062;"></p>
                   <textarea id="idPostTextarea" name="isiPost" style="display:none"></textarea>
                   <div style="text-align: center">
                     <a href="#" class="w3-left w3-margin-right attach ">
@@ -253,6 +261,7 @@ body{
           </div>
         </div>
       </div>
+      <?php endif; ?>
       <!-- FEBRY ASU tgl 10 batas bawah 3-->
 
 
@@ -270,14 +279,17 @@ body{
               <img src="/w3images/nature.jpg" style="width:100%" alt="Nature" class="w3-margin-bottom">
           </div>
         </div>
-        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
+        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
         <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom collapsible"><i class="fa fa-comment"></i>  Comment</button> 
-        <div style="background-color: #15202b;">
-
+        <div class="content" style="background-color: #15202b;">
+          ADI<br>
+          Isi Komennya<br><br>
+          AAN<br>
+          Komennya<br><br>
           <!-- UPDATE TONY tgl 10 batas atas 2-->
          <form id="idFormComment" method="post">
-          <p id="idCommentP" contenteditable="true" class="w3-padding" style=" border: 1px solid; border-color: #2c7062;">Comment Something...</p>
-          <textarea id="idCommentTextArea" name="isiComment" placeholder="Write add a comment..." rows="2" class="komen" maxlength="500" style="display: none;"></textarea>
+          <!-- <p id="idCommentP" contenteditable="true" placeholder="Comment Something..." class="w3-padding" style=" border: 1px solid; border-color: #2c7062;"></p> -->
+          <textarea id="idCommentTextArea" name="isiComment" placeholder="Write Something..." rows="3" class="komen" maxlength="500" ></textarea>
           <button type="submit" class="postbtn" style="font-size: 14px; margin-bottom: 2%;">Comment</button>
          </form>
          <!-- UPDATE TONY tgl 10 batas bawah 2-->
@@ -285,36 +297,58 @@ body{
       </div>
 
     <?php 
-    	$host = "localhost";
-  		$username = "root";
-  		$dbname = "disparity";
-  		$password = "";
+      $host = "localhost";
+      $username = "root";
+      $dbname = "disparity";
+      $password = "";
 
-  		$con = new mysqli($host, $username, $password, $dbname);
+      $con = new mysqli($host, $username, $password, $dbname);
 
-  		$idnya = $_SESSION['id'];
-  		$queryPribadi = "SELECT * from usr where email='$idnya'";
-  		$result = mysqli_query($con, $queryPribadi);
-  		// if (!$check1_res) {
-  		//     printf("Error: %s\n", mysqli_error($con));
-  		//     exit();
-  		// }
-  		$user = mysqli_fetch_array($result);
+      $idnya = $_SESSION['id'];
+      $tagnya = $_SESSION['tag'];
+      $queryPribadi = "SELECT * from usr where email='$idnya'";
 
-  		$queryContent = "SELECT * FROM content ORDER BY contentId DESC";
-  		$result = $con->query($queryContent);
-  		
-  		foreach ($result as $caption):
-		?>
-     	<!-- yang ini tolong jangan diubah, ubah yg atas aja ntar gw samain ke yg sini -->
-      <div class="w3-container w3-card w3-round w3-margin" style="background-color: #15202b; color: white; border: 1px solid; border-color: #2c7062;"><br>
+      $result = mysqli_query($con, $queryPribadi);
+      // if (!$check1_res) {
+      //     printf("Error: %s\n", mysqli_error($con));
+      //     exit();
+      // }
+      $user = mysqli_fetch_array($result);
+
+      $queryContent = "SELECT * FROM content WHERE tag='$tagnya' ORDER BY contentId DESC";
+      $result = $con->query($queryContent);
+      
+      foreach ($result as $caption):
+    ?>
+    <!-- yang ini tolong jangan diubah (Daniel) -->
+    <div class="w3-container w3-card w3-round w3-margin" style="background-color: #15202b; color: white; border: 1px solid; border-color: #2c7062;"><br>
         <img src="avatar.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
         <h4><?=$user['firstName'];?></h4><br>
         <hr class="w3-clear">
         <p><?=$caption['captionContent'];?></p>
-        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
-        <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button> 
-      </div>  
+        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
+        <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom collapsible"><i class="fa fa-comment"></i>  Comment</button> 
+        <div class="content" style="background-color: #15202b;">
+          ADI<br>
+          Isi Komennya<br><br>
+          AAN<br>
+          Komennya<br><br>
+         <form id="idFormComment" method="post">
+          <!-- <p id="idCommentP" contenteditable="true" placeholder="Comment Something..." class="w3-padding" style=" border: 1px solid; border-color: #2c7062;"></p> -->
+          <textarea id="idCommentTextArea" name="isiComment" placeholder="Write Something..." rows="3" class="komen" maxlength="500" ></textarea>
+          <button type="submit" class="postbtn" style="font-size: 14px; margin-bottom: 2%;">Comment</button>
+         </form>
+        </div>
+      </div>
+      
+      <!-- <div class="w3-container w3-card w3-round w3-margin" style="background-color: #15202b; color: white; border: 1px solid; border-color: #2c7062;"><br>
+        <img src="avatar.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+        <h4><?=$user['firstName'];?></h4><br>
+        <hr class="w3-clear">
+        <p><?=$caption['captionContent'];?></p>
+        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
+        <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button> 
+      </div>   -->
   <?php endforeach; ?>  
 
     <!-- End Column 2 -->
@@ -514,6 +548,26 @@ $(document).ready(function() {
         } else{
           //alert(data);
           location.reload();
+        }
+      }
+    });
+    return false;
+  });
+});
+
+$(document).ready(function() {
+  $("#home").submit(function() {
+    var dataform = $(this).serialize(); 
+    $.ajax({
+      url:"back_to_my_profile.php",
+      type:"post",
+      data:dataform,
+      success:function(data) {
+        if(data == "gagal"){
+          alert("Gagal Kembali");
+        } else{
+          //alert(data);
+          document.location.href = 'index.php';
         }
       }
     });
