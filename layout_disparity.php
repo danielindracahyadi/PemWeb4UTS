@@ -202,15 +202,13 @@ body{
 
         echo '
           <form id="home" method="post" style="position: relative">
-            <button class = "w3-circle" name="home" type="submit" value="' . $user['tag'] . '" style="width: 50px;height=50px;padding-top=0px;padding-left=0px;padding-right=0px;padding-bottom=0px;padding-top: 0px;padding-left: 0px;padding-bottom: 0px;padding-right: 0px;border-top-width: 0px;border-left-width: 0px;border-bottom-width: 0px;border-right-width: 0px; height:50px; width: 50px; position: relative;">
-              <img src="avatar.png" style="width:50px" class="w3-circle">
+            <a href="login.php">
+              <img src="logout.png" name="nameLogOut" id="idLogOut" class="w3-right" style="width: 90px; position: relative; "> 
+            </a>
+            <button class = "w3-circle w3-right" name="home" type="submit" value="' . $user['tag'] . '" style="width: 50px;height=50px;padding-top=0px;padding-left=0px;padding-right=0px;padding-bottom=0px;padding-top: 0px;padding-left: 0px;padding-bottom: 0px;padding-right: 0px;border-top-width: 0px;border-left-width: 0px;border-bottom-width: 0px;border-right-width: 0px; height:50px; width: 50px; position: relative;">
+              <img src="avatar.png" style="width:50px" class="w3-circle w3-right">
             </button>
-          <a href="login.php">
-            <img src="logout.png" name="nameLogOut" id="idLogOut" style="width: 90px; position: relative;"> 
-          </a>
           </form>';
-
-        // bersambung . . . Belum selesai
 
       ?>
     </div>
@@ -218,7 +216,7 @@ body{
   <!-- End Navbar -->
  <!--  FEBRY ASU tgl 10 batas bawah 2-->
 
-<div class="w3-container w3-content" style="max-width: 100%; margin-top: 10px; background-color: #10171e;"> 
+<div class="w3-container w3-content" style="max-width: 100vw; height: 100vh; margin-top: 10px; background-color: #10171e;"> 
   <div><br><br><br><br></div>   
   <!-- The Grid -->
   <div class="w3-row">
@@ -246,13 +244,15 @@ body{
                 
                 <!-- UPDATE TONY tgl 10 batas atas 1-->
                 <form id="idFormPost" method="post">
-                  <p id="idPostP" placeholder="Post Something..." contenteditable="true" class=" w3-padding" style=" border: 1px solid; border-color: #2c7062;"></p>
+                  <p id="idPostP" placeholder="Post Something..." contenteditable="true" class="w3-padding" style=" border: 1px solid; border-color: #2c7062;"></p>
                   <textarea id="idPostTextarea" name="isiPost" style="display:none"></textarea>
-                  <div style="text-align: center">
-                    <a href="#" class="w3-left w3-margin-right attach ">
-                      <img src="attach.png" style="width: 25px;">
-                    </a>
+                  <div style="text-align: center; vertical-align:center;">
                     <button type="submit" class="postbtn" style="font-size: 14px;">Post</button>
+                    <!--UPDATE FEBRY 12 MARET, GAK USA ANCURIN LAGII TON ASU, EDIT AJA SIZE KALO MAU, ANCUR LGI GUA TABOK LU-->
+                    <a href="#" class="attach">
+                      <img src="attach.png" style="width: 30px; height: 30px; float:right; margin-top:2%; margin-right:2%;">
+                    </a>
+                    
                   </div>
                 </form>
                 <!-- UPDATE TONY tgl 10 batas bawah 1-->
@@ -268,6 +268,9 @@ body{
       <!-- POSTINGAN -->
       <div class="w3-container w3-card w3-round w3-margin" style="background-color: #15202b; color: white; border: 1px solid; border-color: #2c7062;"><br>
         <img src="avatar.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+        <!-- Update Febry 12 Mar butn trash -->
+        <img src="delete_trash.png" class="w3-right w3-margin-right" style="width:15px;">
+        <!-- Update Febry 12 Mar butn trash -->
         <h4>John Doe</h4><br>
         <hr class="w3-clear">
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
@@ -279,8 +282,9 @@ body{
               <img src="/w3images/nature.jpg" style="width:100%" alt="Nature" class="w3-margin-bottom">
           </div>
         </div>
-        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
-        <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom collapsible"><i class="fa fa-comment"></i>  Comment</button> 
+        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-arrow-up"></i></button>
+        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-arrow-down"></i></button>
+        <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom collapsible"><i class="fa fa-comment"></i></button> 
         <div class="content" style="background-color: #15202b;">
           ADI<br>
           Isi Komennya<br><br>
@@ -387,9 +391,8 @@ body{
               </div>
               <div class="flip-card-back">
                 <!-- isi flipcard disini -->
-                <h1>John Doe</h1> 
-                <p>Architect & Engineer</p> 
-                <p>We love that guy</p>
+                <input type="image" src="eye.png" name="view" style="border-radius:100%; width:80px; margin-top:5%;"><br>
+                <input type="image" src="camera.jpg" name="camera" style="border-radius:100%; width:80px; margin-top:10%;">
               </div>
             </div>
           </div>
