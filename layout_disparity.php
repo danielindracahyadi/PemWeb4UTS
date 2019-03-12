@@ -172,7 +172,7 @@ body{
 }
 
 </style>
-<body class="w3-theme-l5">
+<body class="">
 
   <!-- Navbar -->
  <!--  FEBRY ASU tgl 10 batas atas 2-->
@@ -203,10 +203,10 @@ body{
         echo '
           <form id="home" method="post" style="position: relative">
             <a href="login.php">
-              <img src="logout.png" name="nameLogOut" id="idLogOut" class="w3-right" style="width: 90px; position: relative; "> 
+              <img src="logout.png" name="nameLogOut" id="idLogOut" class="w3-right img-responsive" style="width: 90px; position: relative; margin-top: 5px;"> 
             </a>
             <button class = "w3-circle w3-right" name="home" type="submit" value="' . $user['tag'] . '" style="width: 50px;height=50px;padding-top=0px;padding-left=0px;padding-right=0px;padding-bottom=0px;padding-top: 0px;padding-left: 0px;padding-bottom: 0px;padding-right: 0px;border-top-width: 0px;border-left-width: 0px;border-bottom-width: 0px;border-right-width: 0px; height:50px; width: 50px; position: relative;">
-              <img src="avatar.png" style="width:50px" class="w3-circle w3-right">
+              <img src="avatar.png" style="width:50px" class="w3-circle w3-right img-responsive">
             </button>
           </form>';
 
@@ -216,7 +216,8 @@ body{
   <!-- End Navbar -->
  <!--  FEBRY ASU tgl 10 batas bawah 2-->
 
-<div class="w3-container w3-content" style="max-width: 100vw; height: 100vh; margin-top: 10px; background-color: #10171e;"> 
+<!--<div class="w3-container w3-content" style="max-width: 100vw; height: 100vh; margin-top: 10px; background-color: #10171e;"> -->
+  <div style='height:100vh;background-color: #10171e;' >
   <div><br><br><br><br></div>   
   <!-- The Grid -->
   <div class="w3-row">
@@ -238,7 +239,7 @@ body{
           <div class="w3-card w3-round" style="background-color: #15202b; color: white; border: 1px solid; border-color: #2c7062;">
             <div class="w3-container w3-padding">
               <div class="col-10">
-                <img src="avatar.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px;"><br>
+                <img src="avatar.png" alt="Avatar" class="w3-left w3-circle w3-margin-right img-responsive" style="width:60px;"><br>
               </div>
               <div class="col-90">
                 
@@ -282,16 +283,31 @@ body{
               <img src="/w3images/nature.jpg" style="width:100%" alt="Nature" class="w3-margin-bottom">
           </div>
         </div>
-        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-arrow-up"></i></button>
-        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-arrow-down"></i></button>
-        <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom collapsible"><i class="fa fa-comment"></i></button> 
+        <!-- UPVOTE DOWNVOTE COMMENT 12 maret Febe -->
+        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom">
+          <img class="img-responsive" src="upvote.png" style="width: 20px; height: 20px;">
+        </button>
+        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom">
+          <img class="img-responsive" src="downvote.png" style="width: 20px; height: 20px;">
+        </button>
+        <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom collapsible">
+         <img class="img-responsive" src="comment.png" style="width: 20px; height: 20px;">
+        </button> 
+        
         <div class="content" style="background-color: #15202b;">
-          ADI<br>
-          Isi Komennya<br><br>
-          AAN<br>
-          Komennya<br><br>
+          <!-- BUAT BAR COMMENT TIAP POST 12 maret Febe-->
+          <div>
+            <img src="avatar.png" alt="Avatar" class="w3-left w3-circle w3-margin-right img-responsive" style="width:40px; margin-top: 5px; margin-left: 5px;">
+            <div style=" border: 1px solid; border-color: #2c7062;">
+              <img src="delete_x.png" class="w3-right w3-margin-right w3-margin-top" style="width:15px;">
+              ADI
+              <br>
+              Isi Komennya<br><br>
+
+            </div>
+          </div>
           <!-- UPDATE TONY tgl 10 batas atas 2-->
-         <form id="idFormComment" method="post">
+         <form id="idFormComment" method="post" style="padding-top: 10px;">
           <!-- <p id="idCommentP" contenteditable="true" placeholder="Comment Something..." class="w3-padding" style=" border: 1px solid; border-color: #2c7062;"></p> -->
           <textarea id="idCommentTextArea" name="isiComment" placeholder="Write Something..." rows="3" class="komen" maxlength="500" ></textarea>
           <button type="submit" class="postbtn" style="font-size: 14px; margin-bottom: 2%;">Comment</button>
@@ -385,7 +401,7 @@ body{
                   }
                   else
                   {
-                    echo '<img src="avatar.png" alt="Avatar" style="width:200px; height: 200px">';
+                    echo '<img src="avatar.png" alt="Avatar" style="width:200px; height: 200px" class="img-responsive" >';
                   }
                 ?>
               </div>
