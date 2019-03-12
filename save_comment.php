@@ -5,14 +5,22 @@ $username = "root";
 $dbname = "disparity";
 $password = "";
 
-$varPost = $_POST['isiComment'];
-$tag = $_SESSION['tag'];
-
 $con = new mysqli($host, $username, $password, $dbname);
 
-$queryPost = "INSERT INTO comment (captionContent, picture, upVote, downVote, contentDate, contentTime, tag) VALUES ('$varPost', NULL, 0, 0, NULL, NULL, '$tag')";
-        
-mysqli_query($con, $queryPost);
-//$con->exec($queryPost);
-echo $queryPost;
+$varComment = $_POST['isiComment'];
+$idnya = $_SESSION['id'];
+$queryNama = "SELECT * FROM usr WHERE email='$idnya'";
+$hasil = $con->query($queryNama);
+echo $queryNama;
+if(is_array($hasil) || is_object($hasil)){
+	foreach ($hasil as $key1){
+		$tag = $key1['tag'];
+
+		$komenId = $_POST['idKonten'];
+
+		$queryComment = "INSERT INTO comment (commentText, tag, commentDate, commentTime, contentId) VALUES ('$varComment','$tag', null, null, '$komenId')";
+		        
+		mysqli_query($con, $queryComment);
+	}
+}
 ?>
