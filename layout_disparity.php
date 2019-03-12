@@ -407,8 +407,8 @@ body{
               </div>
               <div class="flip-card-back">
                 <!-- isi flipcard disini -->
-                <input type="image" src="eye.png" name="view" style="border-radius:100%; width:80px; margin-top:5%;"><br>
-                <input type="image" src="camera.jpg" name="camera" style="border-radius:100%; width:80px; margin-top:10%;">
+                <input type="image" src="view.png" name="view" style="border-radius:100%; width:80px; margin-top:5%;"><br>
+                <input type="image" src="photo.png" name="camera" style="border-radius:100%; width:80px; margin-top:10%;">
               </div>
             </div>
           </div>
