@@ -35,7 +35,7 @@ body{
 
   <div class="w3-top" style="background-color: #15202b;">
     <div class="col-30">
-      <a href="layout_disparity.php" class="w3-padding-large">
+      <a href="index.php" class="w3-padding-large">
         <img src="disparity_logo.png" style="width:50px;">
       </a>
     </div>
@@ -53,17 +53,19 @@ body{
         $cekUser = $_SESSION["id"];
         $stmt = "SELECT * FROM usr WHERE email = '$cekUser'";
         $result = mysqli_query($con, $stmt);
-        $user = mysqli_fetch_array($result);
+        $user0 = mysqli_fetch_array($result);
         mysqli_close($con);
 
         echo '
           <form id="home" method="post" style="position: relative">
+
             <a href="login.php">
               <img src="logout.png" name="nameLogOut" id="idLogOut" class="w3-right img-responsive" style="width: 90px; position: relative; margin-top: 5px;"> 
             </a>
-            <button class = "w3-circle w3-right" name="home" type="submit" value="' . $user['tag'] . '" style="width: 50px;height=50px;padding-top=0px;padding-left=0px;padding-right=0px;padding-bottom=0px;padding-top: 0px;padding-left: 0px;padding-bottom: 0px;padding-right: 0px;border-top-width: 0px;border-left-width: 0px;border-bottom-width: 0px;border-right-width: 0px; height:50px; width: 50px; position: relative;">
+            <button class = "w3-circle w3-right" name="home" type="submit" value="' . $user0['tag'] . '" style="width: 50px;height=50px;padding-top=0px;padding-left=0px;padding-right=0px;padding-bottom=0px;padding-top: 0px;padding-left: 0px;padding-bottom: 0px;padding-right: 0px;border-top-width: 0px;border-left-width: 0px;border-bottom-width: 0px;border-right-width: 0px; height:50px; width: 50px; position: relative;">
               <img src="avatar.png" style="width:50px" class="w3-circle w3-right img-responsive">
             </button>
+            <font class="w3-right" color="white" style="margin:15px 3%;">'.$user0['firstName'].'</font>
           </form>';
 
       ?>
@@ -88,8 +90,8 @@ body{
       $stmt = "SELECT * FROM usr WHERE email = '$idnya'";
         
       $result = mysqli_query($con, $stmt);
-      $user = mysqli_fetch_array($result);
-      if($_SESSION['tag'] == $user['tag']): ?>
+      $user1 = mysqli_fetch_array($result);
+      if($_SESSION['tag'] == $user1['tag']): ?>
       <div class="w3-row-padding">
         <div class="w3-col m12" >
           <div class="w3-card w3-round" style="background-color: #15202b; color: white; border: 1px solid; border-color: #2c7062;">
@@ -197,7 +199,12 @@ body{
     <div class="w3-container w3-card w3-round w3-margin" style="background-color: #15202b; color: white; border: 1px solid; border-color: #2c7062;"><br>
         <img src="avatar.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
         <!-- Update Febry 12 Mar butn trash -->
-        <img src="delete_trash.png" class="w3-right w3-margin-right" style="width:15px;">
+        <?php if($_SESSION['tag'] == $user1['tag']): ?>
+          <form method="post" name="nameDeletePost" id="idDeletePost">
+            <input type="hidden" name="isiContentId" value="<?=$caption['contentId']?>">
+            <input type="image" src="delete_trash.png" class="w3-right w3-margin-right" style="width:15px;">
+          </form>
+        <?php endif; ?>
         <!-- Update Febry 12 Mar butn trash -->
         <h4><?=$user['firstName'];?></h4><br>
         <hr class="w3-clear">
@@ -229,25 +236,28 @@ body{
 
                 <div>
                   <img src="avatar.png" alt="Avatar" class="w3-left w3-circle w3-margin-right img-responsive" style="width:40px; margin-top: 5px; margin-left: 5px;">
+                  <?php foreach ($result3 as $orang):
+                  if($_SESSION['tag'] == $user1['tag'] || $user0['tag'] == $orang['tag']): ?>
+                  <form method="post" name="nameDeleteComment" id="idDeleteComment">
+                    <input type="hidden" name="isiCommentId" value="<?=$comment['commentId']?>">
+                    <input type="image" src="delete_x.png" class="w3-right w3-margin-right w3-margin-top" style="width:15px;">
+                  </form>
+                  <?php endif; ?>
                   <div style=" border: 1px solid; border-color: #2c7062;">
-                    <img src="delete_x.png" class="w3-right w3-margin-right w3-margin-top" style="width:15px;">
-
-                <?php foreach ($result3 as $orang){
-                  echo $orang['firstName'] . " " . $orang['lastName'];
-
-                }
-              ?>
+                
+                  <?=$orang['firstName'] . " " . $orang['lastName'];
+                endforeach; ?>
               <br>
               <?= $comment['commentText'] ?><br><br>
-                    </div>
+                  </div>
                 </div>
 
               <?php endforeach; ?>
-                     <form id="idFormComment" method="post" style="padding-top: 10px;">
-          <textarea id="idCommentTextArea" name="isiComment" placeholder="Write Something..." rows="3" class="komen" maxlength="500" ></textarea>
-          <input type="hidden" name="idKonten" value="<?= $contentnya ?>"></input>
-          <button type="submit" class="postbtn" style="font-size: 14px; margin-bottom: 2%;">Comment</button>
-         </form>
+                <form id="idFormComment" method="post" style="padding-top: 10px;">
+                  <textarea id="idCommentTextArea" name="isiComment" placeholder="Write Something..." rows="3" class="komen" maxlength="500" ></textarea>
+                  <input type="hidden" name="idKonten" value="<?= $contentnya ?>"></input>
+                  <button type="submit" class="postbtn" style="font-size: 14px; margin-bottom: 2%;">Comment</button>
+                </form>
         </div>
       </div>
   <?php endforeach; ?>  
@@ -491,6 +501,43 @@ $(document).ready(function() {
     });
     return false;
   });
+
+  $("#idDeletePost").submit(function() {
+    var dataform = $(this).serialize(); 
+    $.ajax({
+      url:"delete_post.php",
+      type:"post",
+      data:dataform,
+      success:function(data) {
+        if(data == "gagal"){
+          alert("Gagal Menghapus");
+        } else{
+          //alert(data);
+          location.reload();
+        }
+      }
+    });
+    return false;
+  });
+
+  $("#idDeleteComment").submit(function() {
+    var dataform = $(this).serialize(); 
+    $.ajax({
+      url:"delete_comment.php",
+      type:"post",
+      data:dataform,
+      success:function(data) {
+        if(data == "gagal"){
+          alert("Gagal Menghapus");
+        } else{
+          //alert(data);
+          location.reload();
+        }
+      }
+    });
+    return false;
+  });
+
 
 });
 var btn = document.getElementById('idLogOut');
