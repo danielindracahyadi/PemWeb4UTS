@@ -36,7 +36,7 @@ body{
   <div class="w3-top" style="background-color: #15202b;">
     <div class="col-30">
       <a href="index.php" class="w3-padding-large">
-        <img src="disparity_logo.png" style="width:50px;">
+        <img src="disparity_logo.png" style="width:50px; margin-left: 23%;">
       </a>
     </div>
     <div class="col-30">
@@ -60,7 +60,7 @@ body{
           <form id="home" method="post" style="position: relative">
 
             <a href="login.php">
-              <img src="logout.png" name="nameLogOut" id="idLogOut" class="w3-right img-responsive" style="width: 90px; position: relative; margin-top: 5px;"> 
+              <img src="logout.png" name="nameLogOut" id="idLogOut" class="w3-right img-responsive" style="width: 90px; position: relative; margin-top: 5px; margin-right: 23%; margin-left:2%;"> 
             </a>
             <button class = "w3-circle w3-right" name="home" type="submit" value="' . $user0['tag'] . '" style="width: 50px;height=50px;padding-top=0px;padding-left=0px;padding-right=0px;padding-bottom=0px;padding-top: 0px;padding-left: 0px;padding-bottom: 0px;padding-right: 0px;border-top-width: 0px;border-left-width: 0px;border-bottom-width: 0px;border-right-width: 0px; height:50px; width: 50px; position: relative;">
               <img src="avatar.png" style="width:50px" class="w3-circle w3-right img-responsive">
