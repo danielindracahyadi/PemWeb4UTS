@@ -55,7 +55,7 @@
 					if(data == "gagal"){
 						alert("Email or Password not exist.");
 					} else{
-						 document.location.href = 'layout_disparity.php';
+						 document.location.href = 'index.php';
 					}
 				}
 			});
