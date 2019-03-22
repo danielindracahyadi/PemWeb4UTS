@@ -28,7 +28,7 @@ body{
 }
 
 </style>
-<body class="">
+<body>
 
   <!-- Navbar -->
  <!--  FEBRY ASU tgl 10 batas atas 2-->
@@ -133,11 +133,8 @@ body{
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
           <div class="w3-row-padding" style="margin:0 -16px">
             <div class="w3-half">
-              <img src="/w3images/lights.jpg" style="width:100%" alt="Northern Lights" class="w3-margin-bottom">
+              <img src="avatar.png" style="width:100%" alt="Selfie 1" class="w3-margin-bottom">
             </div>
-            <div class="w3-half">
-              <img src="/w3images/nature.jpg" style="width:100%" alt="Nature" class="w3-margin-bottom">
-          </div>
         </div>
         <!-- UPVOTE DOWNVOTE COMMENT 12 maret Febe -->
         <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom">
