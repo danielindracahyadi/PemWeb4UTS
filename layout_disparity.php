@@ -66,7 +66,18 @@ body{
 }
 .icon-choose-image {
   position: absolute;
-  opacity: 0.8;
+  opacity: 0;
+  top: 50%;
+  left: 50%;
+  margin-top: -24px;
+  margin-left: -24px;
+  width: 48px;
+  height: 48px;
+  cursor:pointer;
+}
+.icon-choose-image:hover {
+  position: absolute;
+  opacity: 1;
   top: 50%;
   left: 50%;
   margin-top: -24px;
@@ -202,9 +213,9 @@ body{
                   <div style="text-align: center; vertical-align:center;">
                     <button type="submit" class="postbtn" style="font-size: 14px;">Post</button>
                     <!--UPDATE FEBRY 12 MARET, GAK USA ANCURIN LAGII TON ASU, EDIT AJA SIZE KALO MAU, ANCUR LGI GUA TABOK LU-->
-                    <a href="#" class="attach">
+                   <!--  <a href="#" class="attach">
                       <img src="attach.png" style="width: 30px; height: 30px; float:right; margin-top:2%; margin-right:2%;">
-                    </a>
+                    </a> -->
                     
                   </div>
                 </form>
@@ -233,12 +244,12 @@ body{
             </div>
         </div>
         <!-- UPVOTE DOWNVOTE COMMENT 12 maret Febe -->
-        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom">
+        <!-- <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom">
           <img class="img-responsive" src="upvote.png" style="width: 20px; height: 20px;">
         </button>
         <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom">
           <img class="img-responsive" src="downvote.png" style="width: 20px; height: 20px;">
-        </button>
+        </button> -->
         <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom collapsible">
          <img class="img-responsive" src="comment.png" style="width: 20px; height: 20px;">
         </button> 
@@ -318,12 +329,12 @@ body{
         <p><?=$caption['captionContent'];?></p>
 
         <!-- UPVOTE DOWNVOTE COMMENT 12 maret Febe -->
-        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom">
+        <!-- <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom">
           <img class="img-responsive" src="upvote.png" style="width: 20px; height: 20px;">
         </button>
         <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom">
           <img class="img-responsive" src="downvote.png" style="width: 20px; height: 20px;">
-        </button>
+        </button> -->
         <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom collapsible">
          <img class="img-responsive" src="comment.png" style="width: 20px; height: 20px;">
         </button> 
@@ -404,8 +415,9 @@ body{
                         ?>
                         <img src='avatar.png' alt='Avatar' style='width:200px; height: 200px;'><?php }?>
                   </div>
-                  <img src="edtProfile_4.png" class="icon-choose-image" style="width: 30%; height: 30%;"/>
-                  <div class="icon-choose-image" onClick="showUploadOption()"></div>
+                  <div class="icon-choose-image" onClick="showUploadOption()">
+                  	<img src="edtProfile_4.png" class="icon-choose-image" style="width: 130%; height: 130%;"/>
+                  </div>
                   <div id="profile-upload-option">
                     <div class="profile-upload-option-list">
                       <input name="fileToUpload" type="file" class="inputFile" onChange="showPreview(this);"></input>
