@@ -1,6 +1,4 @@
-<?php 
-  session_start();
-?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -111,6 +109,84 @@ body{
 .profile-upload-option-list:hover{
   background-color: #fffaf5;
 }
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (image) */
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+}
+
+/* Caption of Modal Image */
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+}
+
+/* Add Animation */
+.modal-content, #caption {  
+  -webkit-animation-name: zoom;
+  -webkit-animation-duration: 0.6s;
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+  from {-webkit-transform:scale(0)} 
+  to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+  from {transform:scale(0)} 
+  to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+  .modal-content {
+    width: 100%;
+  }
+}
 </style>
 <body>
 
@@ -159,7 +235,7 @@ body{
             </button>
           </form>';
         }
-        echo '<font class="w3-right" color="white" style="margin:6px 3%;">'.$user0['firstName'].'</font>'
+        echo '<font class="w3-right" color="white" style="margin:15px 3%;">'.$user0['firstName'].'</font>'
       ?>
     </div>
   </div>
@@ -170,7 +246,7 @@ body{
   <div style='height:100vh;background-color: #10171e;' >
   <div><br><br><br><br></div>   
   <!-- The Grid -->
-  <div class="w3-row">
+  <div class="w3-row" style="margin-top: 30px;">
     <!-- Column 1 --><div class="w3-col m1">-</div>
     <!--  Column 2-->
     <div class="w3-col m7">
@@ -230,51 +306,6 @@ body{
 
 
       <!-- POSTINGAN -->
-      <div class="w3-container w3-card w3-round w3-margin" style="background-color: #15202b; color: white; border: 1px solid; border-color: #2c7062;"><br>
-        <img src="avatar.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
-        <!-- Update Febry 12 Mar butn trash -->
-        <img src="delete_trash.png" class="w3-right w3-margin-right" style="width:15px;">
-        <!-- Update Febry 12 Mar butn trash -->
-        <h4>John Doe</h4><br>
-        <hr class="w3-clear">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-          <div class="w3-row-padding" style="margin:0 -16px">
-            <div class="w3-half">
-              <img src="avatar.png" style="width:100%" alt="Selfie 1" class="w3-margin-bottom">
-            </div>
-        </div>
-        <!-- UPVOTE DOWNVOTE COMMENT 12 maret Febe -->
-        <!-- <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom">
-          <img class="img-responsive" src="upvote.png" style="width: 20px; height: 20px;">
-        </button>
-        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom">
-          <img class="img-responsive" src="downvote.png" style="width: 20px; height: 20px;">
-        </button> -->
-        <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom collapsible">
-         <img class="img-responsive" src="comment.png" style="width: 20px; height: 20px;">
-        </button> 
-        
-        <div class="content" style="background-color: #15202b;">
-          <!-- BUAT BAR COMMENT TIAP POST 12 maret Febe-->
-          <div>
-            <img src="avatar.png" alt="Avatar" class="w3-left w3-circle w3-margin-right img-responsive" style="width:40px; margin-top: 5px; margin-left: 5px;">
-            <div style=" border: 1px solid; border-color: #2c7062;">
-              <img src="delete_x.png" class="w3-right w3-margin-right w3-margin-top" style="width:15px;">
-              ADI
-              <br>
-              Isi Komennya<br><br>
-
-            </div>
-          </div>
-          <!-- UPDATE TONY tgl 10 batas atas 2-->
-         <form id="idFormComment1" method="post" style="padding-top: 10px;">
-          <!-- <p id="idCommentP" contenteditable="true" placeholder="Comment Something..." class="w3-padding" style=" border: 1px solid; border-color: #2c7062;"></p> -->
-          <textarea id="idCommentTextArea" name="isiComment" placeholder="Write Something..." rows="3" class="komen" maxlength="500" ></textarea>
-          <button type="submit" class="postbtn" style="font-size: 14px; margin-bottom: 2%;">Comment</button>
-         </form>
-         <!-- UPDATE TONY tgl 10 batas bawah 2-->
-        </div>
-      </div>
 
     <?php 
       $host = "localhost";
@@ -408,13 +439,21 @@ body{
                   <div id="targetLayer"><?php 
                     if ( $user["profilePicture"] != null)
                       { 
-                        echo "<img src ='" . $user["profilePicture"] . "' alt='Avatar' style='width:200px; height: 200px;' class='upload-preview'>"; ?> 
+                        echo "<img id='myImg' src ='" . $user["profilePicture"] . "' alt='Avatar' style='width:200px; height: 200px;' class='upload-preview'>"; ?> 
                         <?php 
                       } else 
                       {
                         ?>
-                        <img src='avatar.png' alt='Avatar' style='width:200px; height: 200px;'><?php }?>
+                        <img id="myImg" src='avatar.png' alt='Avatar' style='width:200px; height: 200px;'>
+                    <?php } ?>
                   </div>
+                  <!-- MODAL IMAGE FULLSCREEN -->
+                  <div id="myModal" class="modal">
+					  <span class="close">&times;</span>
+					  <img class="modal-content" id="img01">
+					  <div id="caption"></div>
+				  </div>
+				  <!-- MODAL IMAGE FULLSCREEN -->
                   <div class="icon-choose-image" onClick="showUploadOption()">
                   	<img src="edtProfile_4.png" class="icon-choose-image" style="width: 130%; height: 130%;"/>
                   </div>
@@ -423,7 +462,7 @@ body{
                       <input name="fileToUpload" type="file" class="inputFile" onChange="showPreview(this);"></input>
                       <span>Upload</span>
                     </div>
-                    <div class="profile-upload-option-list">View</div>
+                    <div class="profile-upload-option-list" id="myView">View</div>
                     <div class="profile-upload-option-list" onClick="hideUploadOption();">Cancel</div>
                   </div>
                 </div>
@@ -760,7 +799,30 @@ function showPreview(objFileInput) {
     fileReader.readAsDataURL(objFileInput.files[0]);
   }
 }
-//autosize(document.getElementById("idCommentTextArea"));
+
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var img = document.getElementById('myImg');
+var img2 = document.getElementById('myImg');
+var view = document.getElementById('myView');
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("caption");
+
+view.onclick = function(){
+  modal.style.display = "block";
+  modalImg.src = img.src;
+}
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() { 
+  modal.style.display = "none";
+  hideUploadOption();
+}
 </script>
 
 </body>
