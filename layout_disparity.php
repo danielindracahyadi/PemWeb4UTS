@@ -328,9 +328,13 @@ body{
 
       $queryContent = "SELECT * FROM content WHERE tag='$tagnya' ORDER BY contentId DESC";
       $result = $con->query($queryContent);
-      
-      foreach ($result as $caption):
-    ?>
+      if (mysqli_num_rows($result)==0){ ?>
+      <div class="w3-container w3-card w3-round w3-margin" style="background-color: #15202b; color: white; border: 1px solid; border-color: #2c7062;"><br>
+        <span class="center">There is no post yet from this user.</span>
+        <hr class="w3-clear">
+      </div>
+    <?php }
+      foreach ($result as $caption): ?>
     <!-- yang ini tolong jangan diubah (Daniel) -->
     <div class="w3-container w3-card w3-round w3-margin" style="background-color: #15202b; color: white; border: 1px solid; border-color: #2c7062;"><br>
       <?php  
@@ -466,13 +470,13 @@ body{
                   </div>
                   <!-- MODAL IMAGE FULLSCREEN -->
                   <div id="myModal" class="modal">
-					  <span class="close">&times;</span>
-					  <img class="modal-content" id="img01">
-					  <div id="caption"></div>
-				  </div>
-				  <!-- MODAL IMAGE FULLSCREEN -->
+            <span class="close">&times;</span>
+            <img class="modal-content" id="img01">
+            <div id="caption"></div>
+          </div>
+          <!-- MODAL IMAGE FULLSCREEN -->
                   <div class="icon-choose-image" onClick="showUploadOption()">
-                  	<img src="edtProfile_4.png" class="icon-choose-image" style="width: 130%; height: 130%;"/>
+                    <img src="edtProfile_4.png" class="icon-choose-image" style="width: 130%; height: 130%;"/>
                   </div>
                   <div id="profile-upload-option">
                     <div class="profile-upload-option-list">
