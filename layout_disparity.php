@@ -384,7 +384,7 @@ body{
                 $result3 = $con->query($queryNamaKomen); ?>
 
                 <div>
-                  <img src="avatar.png" alt="Avatar" class="w3-left w3-circle w3-margin-right img-responsive" style="width:40px; margin-top: 5px; margin-left: 5px;">
+                  
                   <?php foreach ($result3 as $orang): ?>
                   <div style=" border: 1px solid; border-color: #2c7062;">
                   <?php if($_SESSION['tag'] == $user1['tag'] || $user0['tag'] == $orang['tag']): ?>
@@ -394,6 +394,20 @@ body{
                   </form>
                   <?php endif; ?>
                   
+                  <?php  
+                  if ($orang["profilePicture"] != null)
+                  {
+                    echo '<img src="' . $orang["profilePicture"] . ' " alt="Avatar" class="w3-left w3-circle w3-margin-right img-responsive" style="width:40px;  height:40px; margin-top: 15px; margin-left: 15px;">
+                      </button>
+                    </form>';
+                  }
+                  else
+                  {
+                    echo '<img src="avatar.png" alt="Avatar" class="w3-left w3-circle w3-margin-right img-responsive" style="width:40px; height:40px; margin-top: 5px; margin-left: 5px;">
+                      </button>
+                    </form>';
+                  }
+                  ?>
                 
                   <?=$orang['firstName'] . " " . $orang['lastName'];
                 endforeach; ?>
@@ -433,6 +447,9 @@ body{
               $result = mysqli_query($con, $stmt);
               $user = mysqli_fetch_array($result);
               mysqli_close($con);
+
+              if($_SESSION["id"]==$user["email"])
+              {
             ?>
             <form id='idUploadForm' action='upload_profile.php' method='post' enctype="multipart/form-data">
                 <div id="targetOuter">
@@ -471,6 +488,41 @@ body{
                 </div>
                 &nbsp;
             </form>
+            <?php }
+            else { ?>
+            <form id='idUploadForm' action='upload_profile.php' method='post' enctype="multipart/form-data">
+                <div id="targetOuter">
+                  <div id="targetLayer"><?php 
+                    if ( $user["profilePicture"] != null)
+                      { 
+                        echo "<img id='myImg' src ='" . $user["profilePicture"] . "' alt='Avatar' style='width:200px; height: 200px;' class='upload-preview'>"; ?> 
+                        <?php 
+                      } else 
+                      {
+                        ?>
+                        <img id="myImg" src='avatar.png' alt='Avatar' style='width:200px; height: 200px;'>
+                    <?php } ?>
+                  </div>
+                  <!-- MODAL IMAGE FULLSCREEN -->
+                  <div id="myModal" class="modal">
+            <span class="close">&times;</span>
+            <img class="modal-content" id="img01">
+            <div id="caption"></div>
+          </div>
+          <!-- MODAL IMAGE FULLSCREEN -->
+                  <div class="icon-choose-image" onClick="showUploadOption()">
+                    <img src="edtProfile_4.png" class="icon-choose-image" style="width: 130%; height: 130%;"/>
+                  </div>
+                  <div id="profile-upload-option">
+                    
+                    <div class="profile-upload-option-list" id="myView">View</div>
+                    <div class="profile-upload-option-list" onClick="hideUploadOption();">Cancel</div>
+                  </div>
+                </div>
+                
+                &nbsp;
+            </form>
+            <?php } ?>
           </div>
           <!-- <img src="avatar.png" alt="Avatar" style="width:50%; padding-top: 10px;"><br> -->
           <!-- edit Fian 9/03/2019 -->
