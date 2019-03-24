@@ -376,7 +376,7 @@ body{
                   <?php if($_SESSION['tag'] == $user1['tag'] || $user0['tag'] == $orang['tag']): ?>
                   <form method="post" name="nameDeleteComment" id="idDeleteComment">
                     <input type="hidden" name="isiCommentId" value="<?=$comment['commentId']?>">
-                    <input type="image" src="close_x.png" class="w3-right w3-margin-right w3-margin-top" style="width:15px;">
+                    <input type="image" src="delete_x.png" class="w3-right w3-margin-right w3-margin-top" style="width:15px;">
                   </form>
                   <?php endif; ?>
                   
