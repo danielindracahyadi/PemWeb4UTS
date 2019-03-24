@@ -18,6 +18,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <style> 
+.image-upload>input
+{
+  display: none;
+}
 html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 *{
   box-sizing: border-box;
@@ -26,7 +30,76 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 body{
   background-color: #10171e;
 }
-
+.upload-preview {border-radius:4px;width: 200px;height: 200px;}
+#body-overlay {background-color: rgba(0, 0, 0, 0.6);z-index: 999;position: absolute;left: 0;top: 0;width: 100%;height: 100%;display: none;}
+#body-overlay div {position:absolute;left:50%;top:50%;margin-top:-32px;margin-left:-32px;}
+#targetOuter{ 
+  position:relative;
+  text-align: center;
+  background-color: #F0E8E0;
+  margin: 20px auto;
+  width: 200px;
+  height: 200px;
+  border-radius: 4px;
+}
+.btnSubmit {
+  background-color: #565656;
+  border-radius: 4px;
+  padding: 10px;
+  border: #333 1px solid;
+  color: #FFFFFF;
+  width: 200px;
+  cursor:pointer;
+}
+.inputFile{
+  margin-top: 0px;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  width: 200px;
+  height: 36px;
+  background-color: #FFFFFF;
+  overflow: hidden;
+  opacity: 0;
+  position: absolute;
+  cursor: pointer;
+}
+.icon-choose-image {
+  position: absolute;
+  opacity: 0.8;
+  top: 50%;
+  left: 50%;
+  margin-top: -24px;
+  margin-left: -24px;
+  width: 48px;
+  height: 48px;
+  cursor:pointer;
+}
+#profile-upload-option{
+  display:none;
+  position: absolute;
+  top: 163px;
+  left: 23px;
+  margin-top: -24px;
+  margin-left: -24px;
+  border: #d8d1ca 1px solid;
+  border-radius: 4px;
+  background-color: #F0E8E0;
+  opacity: 0.9;
+  width: 200px;
+}
+.profile-upload-option-list{
+  margin: 1px;
+  height: 25px;
+  border-bottom: 1px solid #cecece;
+  cursor: pointer;
+  position: relative;
+  padding:5px 0px;
+  color: black;
+}
+.profile-upload-option-list:hover{
+  background-color: #fffaf5;
+}
 </style>
 <body>
 
@@ -75,7 +148,7 @@ body{
             </button>
           </form>';
         }
-
+        echo '<font class="w3-right" color="white" style="margin:6px 3%;">'.$user0['firstName'].'</font>'
       ?>
     </div>
   </div>
@@ -270,14 +343,15 @@ body{
 
                 <div>
                   <img src="avatar.png" alt="Avatar" class="w3-left w3-circle w3-margin-right img-responsive" style="width:40px; margin-top: 5px; margin-left: 5px;">
-                  <?php foreach ($result3 as $orang):
-                  if($_SESSION['tag'] == $user1['tag'] || $user0['tag'] == $orang['tag']): ?>
+                  <?php foreach ($result3 as $orang): ?>
+                  <div style=" border: 1px solid; border-color: #2c7062;">
+                  <?php if($_SESSION['tag'] == $user1['tag'] || $user0['tag'] == $orang['tag']): ?>
                   <form method="post" name="nameDeleteComment" id="idDeleteComment">
                     <input type="hidden" name="isiCommentId" value="<?=$comment['commentId']?>">
                     <input type="image" src="delete_x.png" class="w3-right w3-margin-right w3-margin-top" style="width:15px;">
                   </form>
                   <?php endif; ?>
-                  <div style=" border: 1px solid; border-color: #2c7062;">
+                  
                 
                   <?=$orang['firstName'] . " " . $orang['lastName'];
                 endforeach; ?>
@@ -287,7 +361,7 @@ body{
                 </div>
 
               <?php endforeach; ?>
-                <form id="idFormComment" method="post" style="padding-top: 10px;">
+                <form id="idFormComment" name="nameFormComment" method="post" style="padding-top: 10px;">
                   <textarea id="idCommentTextArea" name="isiComment" placeholder="Write Something..." rows="3" class="komen" maxlength="500" ></textarea>
                   <input type="hidden" name="idKonten" value="<?= $contentnya ?>"></input>
                   <button type="submit" class="postbtn" style="font-size: 14px; margin-bottom: 2%;">Comment</button>
@@ -330,7 +404,7 @@ body{
                         ?>
                         <img src='avatar.png' alt='Avatar' style='width:200px; height: 200px;'><?php }?>
                   </div>
-                  <img src="photo.png"  class="icon-choose-image"/>
+                  <img src="edtProfile_4.png" class="icon-choose-image" style="width: 30%; height: 30%;"/>
                   <div class="icon-choose-image" onClick="showUploadOption()"></div>
                   <div id="profile-upload-option">
                     <div class="profile-upload-option-list">
@@ -546,7 +620,7 @@ $(document).ready(function() {
       }           
      });
   }));
-  $("#idFormComment").submit(function() {
+  $("form[name='nameFormComment']").submit(function() {
     var dataform = $(this).serialize(); 
     $.ajax({
       url:"save_comment.php",
@@ -582,7 +656,7 @@ $(document).ready(function() {
     return false;
   });
 
-  $("#idDeletePost").submit(function() {
+  $("form[name='nameDeletePost']").submit(function() {
     var dataform = $(this).serialize(); 
     $.ajax({
       url:"delete_post.php",
@@ -600,7 +674,7 @@ $(document).ready(function() {
     return false;
   });
 
-  $("#idDeleteComment").submit(function() {
+  $("form[name='nameDeleteComment']").submit(function() {
     var dataform = $(this).serialize(); 
     $.ajax({
       url:"delete_comment.php",
