@@ -18,10 +18,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <style> 
-.image-upload>input
-{
-  display: none;
-}
 html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 *{
   box-sizing: border-box;
@@ -30,76 +26,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 body{
   background-color: #10171e;
 }
-.upload-preview {border-radius:4px;width: 200px;height: 200px;}
-#body-overlay {background-color: rgba(0, 0, 0, 0.6);z-index: 999;position: absolute;left: 0;top: 0;width: 100%;height: 100%;display: none;}
-#body-overlay div {position:absolute;left:50%;top:50%;margin-top:-32px;margin-left:-32px;}
-#targetOuter{ 
-  position:relative;
-  text-align: center;
-  background-color: #F0E8E0;
-  margin: 20px auto;
-  width: 200px;
-  height: 200px;
-  border-radius: 4px;
-}
-.btnSubmit {
-  background-color: #565656;
-  border-radius: 4px;
-  padding: 10px;
-  border: #333 1px solid;
-  color: #FFFFFF;
-  width: 200px;
-  cursor:pointer;
-}
-.inputFile{
-  margin-top: 0px;
-  left: 0px;
-  right: 0px;
-  top: 0px;
-  width: 200px;
-  height: 36px;
-  background-color: #FFFFFF;
-  overflow: hidden;
-  opacity: 0;
-  position: absolute;
-  cursor: pointer;
-}
-.icon-choose-image {
-  position: absolute;
-  opacity: 0.8;
-  top: 50%;
-  left: 50%;
-  margin-top: -24px;
-  margin-left: -24px;
-  width: 48px;
-  height: 48px;
-  cursor:pointer;
-}
-#profile-upload-option{
-  display:none;
-  position: absolute;
-  top: 163px;
-  left: 23px;
-  margin-top: -24px;
-  margin-left: -24px;
-  border: #d8d1ca 1px solid;
-  border-radius: 4px;
-  background-color: #F0E8E0;
-  opacity: 0.9;
-  width: 200px;
-}
-.profile-upload-option-list{
-  margin: 1px;
-  height: 25px;
-  border-bottom: 1px solid #cecece;
-  cursor: pointer;
-  position: relative;
-  padding:5px 0px;
-  color: black;
-}
-.profile-upload-option-list:hover{
-  background-color: #fffaf5;
-}
+
 </style>
 <body>
 
@@ -136,22 +63,19 @@ body{
               <img src="logout.png" name="nameLogOut" id="idLogOut" class="w3-right img-responsive" style="width: 90px; position: relative; margin-top: 5px; margin-right: 23%; margin-left:2%;"> 
             </a>
             <button class = "w3-circle w3-right" name="home" type="submit" value="' . $user0['tag'] . '" style="width: 50px;height=50px;padding-top=0px;padding-left=0px;padding-right=0px;padding-bottom=0px;padding-top: 0px;padding-left: 0px;padding-bottom: 0px;padding-right: 0px;border-top-width: 0px;border-left-width: 0px;border-bottom-width: 0px;border-right-width: 0px; height:50px; width: 50px; position: relative;">';
-          if ($user0["profilePicture"] != null)
-          {
-            echo '<img src="' . $user0["profilePicture"] . ' " width=50 height=50 class="w3-circle w3-right img-responsive">
-              </button>
-            </form>';
-          }
-          else
-          {
-            echo '<img src="avatar.png" style="width:50px" class="w3-circle w3-right img-responsive">
-              </button>
-            </form>';
-          }
-          echo '
+        if ($user0["profilePicture"] != null)
+        {
+          echo '<img src="' . $user0["profilePicture"] . ' " width=50 height=50 class="w3-circle w3-right img-responsive">
             </button>
-            <font class="w3-right" color="white" style="margin:15px 3%;border-bottom-style: solid;margin-bottom: 15px;padding-bottom: 0px;border-bottom-width: 0px;margin-top: 0px;">'.$user0['firstName'].'</font>
           </form>';
+        }
+        else
+        {
+          echo '<img src="avatar.png" style="width:50px" class="w3-circle w3-right img-responsive">
+            </button>
+          </form>';
+        }
+
       ?>
     </div>
   </div>
@@ -181,7 +105,7 @@ body{
           <div class="w3-card w3-round" style="background-color: #15202b; color: white; border: 1px solid; border-color: #2c7062;">
             <div class="w3-container w3-padding">
               <div class="col-10">
-              <?php  
+                <?php  
                 if ($user1["profilePicture"] != null)
                 {
                   echo '<img src="' . $user1["profilePicture"] . ' " alt="Avatar" class="w3-left w3-circle w3-margin-right img-responsive" style="width:60px;">
@@ -195,7 +119,6 @@ body{
                   </form>';
                 }
                 ?>
-              <br>
               </div>
               <div class="col-90">
                 
@@ -295,20 +218,20 @@ body{
     ?>
     <!-- yang ini tolong jangan diubah (Daniel) -->
     <div class="w3-container w3-card w3-round w3-margin" style="background-color: #15202b; color: white; border: 1px solid; border-color: #2c7062;"><br>
-        <?php  
+      <?php  
         if ($user["profilePicture"] != null)
         {
-          echo '<img src="' . $user["profilePicture"] . ' " alt="Avatar" class="w3-left w3-circle w3-margin-right img-responsive" style="width:60px;>
+          echo '<img src="' . $user["profilePicture"] . ' " alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
             </button>
           </form>';
         }
         else
         {
-          echo '<img src="avatar.png" alt="Avatar" class="w3-left w3-circle w3-margin-right img-responsive" style="width:60px;"">
+          echo '<img src="avatar.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
             </button>
           </form>';
         }
-        ?>
+      ?>
         <!-- Update Febry 12 Mar butn trash -->
         <?php if($_SESSION['tag'] == $user1['tag']): ?>
           <form method="post" name="nameDeletePost" id="idDeletePost">
@@ -394,11 +317,6 @@ body{
               $result = mysqli_query($con, $stmt);
               $user = mysqli_fetch_array($result);
               mysqli_close($con);
-
-              $useraktif = $_SESSION["id"];
-              // echo $useraktif;
-              // echo $user["email"];
-              if ($useraktif == $user["email"]):
             ?>
             <form id='idUploadForm' action='upload_profile.php' method='post' enctype="multipart/form-data">
                 <div id="targetOuter">
@@ -412,7 +330,7 @@ body{
                         ?>
                         <img src='avatar.png' alt='Avatar' style='width:200px; height: 200px;'><?php }?>
                   </div>
-                  <img src="edtProfile_4.png"  class="icon-choose-image" style="width: 30%; height: 30%;" />
+                  <img src="photo.png"  class="icon-choose-image"/>
                   <div class="icon-choose-image" onClick="showUploadOption()"></div>
                   <div id="profile-upload-option">
                     <div class="profile-upload-option-list">
@@ -428,32 +346,8 @@ body{
                 </div>
                 &nbsp;
             </form>
-            <?php endif;
-            if ($useraktif != $user["email"]):
-            ?>
-            <form id='idUploadForm' action='upload_profile.php' method='post' enctype="multipart/form-data">
-                <div id="targetOuter">
-                  <div id="targetLayer"><?php 
-                    if ( $user["profilePicture"] != null)
-                      { 
-                        echo "<img src ='" . $user["profilePicture"] . "' alt='Avatar' style='width:200px; height: 200px;' class='upload-preview'>"; ?> 
-                        <?php 
-                      } else 
-                      {
-                        ?>
-                        <img src='avatar.png' alt='Avatar' style='width:200px; height: 200px;'><?php }?>
-                  </div>
-                  <div class="icon-choose-image" onClick="showUploadOption()"></div>
-                  <div id="profile-upload-option">
-                    
-                    <div class="profile-upload-option-list">View</div>
-                    <div class="profile-upload-option-list" onClick="hideUploadOption();">Cancel</div>
-                  </div>
-                </div>
-                
-                &nbsp;
-            </form>
-            <?php endif; ?>
+          </div>
+          <!-- <img src="avatar.png" alt="Avatar" style="width:50%; padding-top: 10px;"><br> -->
           <!-- edit Fian 9/03/2019 -->
           <span>
             <?php
@@ -519,10 +413,8 @@ body{
         </div>
       </div>
       <br>
-    </div>
       <?php 
       if ($numberOfRows>0):?>
-      <br>
       <div class="w3-card w3-round w3-center" style="background-color: #15202b; color: white; border: 1px solid; border-color: #2c7062;">
         <div class="w3-container">
           <?php
@@ -552,7 +444,9 @@ body{
               
                 echo "<tr>";
                   echo "<td>";
-                    if ( $row["profilePicture"] != null)
+                  echo "<script type='text/javascript'>" . $user["profilePicture"] . ";</script>";
+
+                  if ( $row["profilePicture"] != null)
                   {
                     echo '
                     <form id = "id_visit_profile"  method="post" action="visit_profile.php">
@@ -570,6 +464,7 @@ body{
                       </button>
                     </form>';
                   }
+                    
 
                     // echo '
                     // <form id = "id_visit_profile"  method="post" action="visit_profile.php">
@@ -595,8 +490,9 @@ body{
       </div>
       <?php endif; ?>
       <br>
+      
     <!-- End Column 3 -->
-    <!-- </div> -->
+    </div>
 
     <!-- Column 1 -->
     <div class="w3-col m1"> 
@@ -632,24 +528,24 @@ $(document).ready(function() {
     return false;
   });
   $("#uploadForm").on('submit',(function(e) {
-      e.preventDefault();
-      $.ajax({
-        url: "upload.php",
-        type: "POST",
-        data:  new FormData(this),
-        beforeSend: function(){$("#body-overlay").show();},
-        contentType: false,
-        processData:false,
-        success: function(data)
-        {
-        $("#targetLayer").css('opacity','1');
-        setInterval(function() {$("#body-overlay").hide(); },500);
-        },
-        error: function() 
-        {
-        }           
-       });
-    }));
+    e.preventDefault();
+    $.ajax({
+      url: "upload.php",
+      type: "POST",
+      data:  new FormData(this),
+      beforeSend: function(){$("#body-overlay").show();},
+      contentType: false,
+      processData:false,
+      success: function(data)
+      {
+      $("#targetLayer").css('opacity','1');
+      setInterval(function() {$("#body-overlay").hide(); },500);
+      },
+      error: function() 
+      {
+      }           
+     });
+  }));
   $("#idFormComment").submit(function() {
     var dataform = $(this).serialize(); 
     $.ajax({
@@ -760,8 +656,6 @@ for (i = 0; i < coll.length; i++) {
     } 
   });
 }
-
-// edit Fian 22 maret 2019
 function showUploadOption(){
   $("#profile-upload-option").css('display','block');
 }
@@ -779,20 +673,6 @@ function showPreview(objFileInput) {
     }
     fileReader.readAsDataURL(objFileInput.files[0]);
   }
-}
-//DropDown Comment
-var coll = document.getElementsByClassName("collapsible");
-var i;
-for (i = 0; i < coll.length; i++) {
-  coll[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var content = this.nextElementSibling;
-    if (content.style.maxHeight){
-      content.style.maxHeight = null;
-    } else {
-      content.style.maxHeight = content.scrollHeight + "px";
-    } 
-  });
 }
 //autosize(document.getElementById("idCommentTextArea"));
 </script>
