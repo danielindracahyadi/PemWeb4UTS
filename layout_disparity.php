@@ -66,7 +66,7 @@ body{
 }
 .icon-choose-image {
   position: absolute;
-  opacity: 0.5;
+  opacity: 0.8;
   top: 50%;
   left: 50%;
   margin-top: -24px;
@@ -85,6 +85,7 @@ body{
   border: #d8d1ca 1px solid;
   border-radius: 4px;
   background-color: #F0E8E0;
+  opacity: 0.9;
   width: 200px;
 }
 .profile-upload-option-list{
@@ -411,7 +412,7 @@ body{
                         ?>
                         <img src='avatar.png' alt='Avatar' style='width:200px; height: 200px;'><?php }?>
                   </div>
-                  <img src="photo.png"  class="icon-choose-image"/>
+                  <img src="edtProfile_4.png"  class="icon-choose-image" style="width: 30%; height: 30%;" />
                   <div class="icon-choose-image" onClick="showUploadOption()"></div>
                   <div id="profile-upload-option">
                     <div class="profile-upload-option-list">
