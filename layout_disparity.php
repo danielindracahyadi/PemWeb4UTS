@@ -547,6 +547,8 @@ body{
               
               echo "Email    : ";
               echo $user["email"] . '<br>';
+              echo "Gender : ";
+              echo $user["gender"] . '<br>';
               echo "Birthday : ";
               echo $user["birthDate"] . '<br>';
               $host = "localhost";
