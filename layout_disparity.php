@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,7 +23,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 *{
   box-sizing: border-box;
 }
-/*FEBRY ASU tgl 10 batas atas 1*/
+/*tgl 10 batas atas 1*/
 body{
   background-color: #10171e;
 }
@@ -67,10 +66,9 @@ body{
   opacity: 0;
   top: 50%;
   left: 50%;
-  margin-top: -24px;
-  margin-left: -24px;
-  width: 48px;
-  height: 48px;
+  transform: translate(-50%, -50%);
+  width: 55px;
+  height: 55px;
   cursor:pointer;
 }
 .icon-choose-image:hover {
@@ -78,10 +76,9 @@ body{
   opacity: 1;
   top: 50%;
   left: 50%;
-  margin-top: -24px;
-  margin-left: -24px;
-  width: 48px;
-  height: 48px;
+  transform: translate(-50%, -50%);
+  width: 55px;
+  height: 55px;
   cursor:pointer;
 }
 #profile-upload-option{
@@ -109,7 +106,6 @@ body{
 .profile-upload-option-list:hover{
   background-color: #fffaf5;
 }
-
 /* The Modal (background) */
 .modal {
   display: none; /* Hidden by default */
@@ -124,7 +120,6 @@ body{
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
 }
-
 /* Modal Content (image) */
 .modal-content {
   margin: auto;
@@ -132,7 +127,6 @@ body{
   width: 80%;
   max-width: 700px;
 }
-
 /* Caption of Modal Image */
 #caption {
   margin: auto;
@@ -144,7 +138,6 @@ body{
   padding: 10px 0;
   height: 150px;
 }
-
 /* Add Animation */
 .modal-content, #caption {  
   -webkit-animation-name: zoom;
@@ -152,17 +145,14 @@ body{
   animation-name: zoom;
   animation-duration: 0.6s;
 }
-
 @-webkit-keyframes zoom {
   from {-webkit-transform:scale(0)} 
   to {-webkit-transform:scale(1)}
 }
-
 @keyframes zoom {
   from {transform:scale(0)} 
   to {transform:scale(1)}
 }
-
 /* The Close Button */
 .close {
   position: absolute;
@@ -173,14 +163,12 @@ body{
   font-weight: bold;
   transition: 0.3s;
 }
-
 .close:hover,
 .close:focus {
   color: #bbb;
   text-decoration: none;
   cursor: pointer;
 }
-
 /* 100% Image Width on Smaller Screens */
 @media only screen and (max-width: 700px){
   .modal-content {
@@ -191,7 +179,7 @@ body{
 <body>
 
   <!-- Navbar -->
- <!--  FEBRY ASU tgl 10 batas atas 2-->
+ <!--tgl 10 batas atas 2-->
 
   <div class="w3-top" style="background-color: #15202b;">
     <div class="col-30">
@@ -215,10 +203,8 @@ body{
         $result = mysqli_query($con, $stmt);
         $user0 = mysqli_fetch_array($result);
         mysqli_close($con);
-
         echo '
           <form id="home" method="post" style="position: relative">
-
             <a href="login.php">
               <img src="logout.png" name="nameLogOut" id="idLogOut" class="w3-right img-responsive" style="width: 90px; position: relative; margin-top: 5px; margin-right: 23%; margin-left:2%;"> 
             </a>
@@ -240,7 +226,7 @@ body{
     </div>
   </div>
   <!-- End Navbar -->
- <!--  FEBRY ASU tgl 10 batas bawah 2-->
+ <!--tgl 10 batas bawah 2-->
 
 <!--<div class="w3-container w3-content" style="max-width: 100vw; height: 100vh; margin-top: 10px; background-color: #10171e;"> -->
   <div style='height:100vh;background-color: #10171e;' >
@@ -251,7 +237,7 @@ body{
     <!--  Column 2-->
     <div class="w3-col m7">
 
-      <!-- FEBRY ASU tgl 10 batas atas 3-->
+      <!--tgl 10 batas atas 3-->
       <?php 
       $idnya = $_SESSION['id'];
       $con = new mysqli($host, $username, $password, $dbname);
@@ -288,21 +274,21 @@ body{
                   <textarea id="idPostTextarea" name="isiPost" style="display:none"></textarea>
                   <div style="text-align: center; vertical-align:center;">
                     <button type="submit" class="postbtn" style="font-size: 14px;">Post</button>
-                    <!--UPDATE FEBRY 12 MARET, GAK USA ANCURIN LAGII TON ASU, EDIT AJA SIZE KALO MAU, ANCUR LGI GUA TABOK LU-->
+                    <!--12 MARET-->
                    <!--  <a href="#" class="attach">
                       <img src="attach.png" style="width: 30px; height: 30px; float:right; margin-top:2%; margin-right:2%;">
                     </a> -->
                     
                   </div>
                 </form>
-                <!-- UPDATE TONY tgl 10 batas bawah 1-->
+                <!--tgl 10 batas bawah 1-->
               </div>
             </div>
           </div>
         </div>
       </div>
       <?php endif; ?>
-      <!-- FEBRY ASU tgl 10 batas bawah 3-->
+      <!--tgl 10 batas bawah 3-->
 
 
       <!-- POSTINGAN -->
@@ -312,20 +298,16 @@ body{
       $username = "root";
       $dbname = "disparity";
       $password = "";
-
       $con = new mysqli($host, $username, $password, $dbname);
-
       $idnya = $_SESSION['id'];
       $tagnya = $_SESSION['tag'];
       $queryPribadi = "SELECT * from usr where tag='$tagnya'";
-
       $result = mysqli_query($con, $queryPribadi);
       // if (!$check1_res) {
       //     printf("Error: %s\n", mysqli_error($con));
       //     exit();
       // }
       $user = mysqli_fetch_array($result);
-
       $queryContent = "SELECT * FROM content WHERE tag='$tagnya' ORDER BY contentId DESC";
       $result = $con->query($queryContent);
       if (mysqli_num_rows($result)==0){ ?>
@@ -394,7 +376,7 @@ body{
                   <?php if($_SESSION['tag'] == $user1['tag'] || $user0['tag'] == $orang['tag']): ?>
                   <form method="post" name="nameDeleteComment" id="idDeleteComment">
                     <input type="hidden" name="isiCommentId" value="<?=$comment['commentId']?>">
-                    <input type="image" src="delete_x.png" class="w3-right w3-margin-right w3-margin-top" style="width:15px;">
+                    <input type="image" src="close_x.png" class="w3-right w3-margin-right w3-margin-top" style="width:15px;">
                   </form>
                   <?php endif; ?>
                   
@@ -444,14 +426,12 @@ body{
               $username = "root";
               $dbname = "disparity";
               $password = "";
-
               $con = new mysqli($host, $username, $password, $dbname);
               $cekUser = $_SESSION["tag"];
               $stmt = "SELECT * FROM usr WHERE tag = '$cekUser'";
               $result = mysqli_query($con, $stmt);
               $user = mysqli_fetch_array($result);
               mysqli_close($con);
-
               if($_SESSION["id"]==$user["email"])
               {
             ?>
@@ -476,7 +456,7 @@ body{
           </div>
           <!-- MODAL IMAGE FULLSCREEN -->
                   <div class="icon-choose-image" onClick="showUploadOption()">
-                    <img src="edtProfile_4.png" class="icon-choose-image" style="width: 130%; height: 130%;"/>
+                    <img src="edtProfile_4.png" class="icon-choose-image"/>
                   </div>
                   <div id="profile-upload-option">
                     <div class="profile-upload-option-list">
@@ -536,14 +516,12 @@ body{
               $username = "root";
               $dbname = "disparity";
               $password = "";
-
               $con = new mysqli($host, $username, $password, $dbname);
               $cekUser = $_SESSION["tag"];
               $stmt = "SELECT * FROM usr WHERE tag = '$cekUser'";
               $result = mysqli_query($con, $stmt);
               $user = mysqli_fetch_array($result);
               mysqli_close($con);
-
               echo $user["firstName"] . " " . $user["lastName"];
             ?>
           </span>
@@ -561,21 +539,16 @@ body{
               $stmt = "SELECT * FROM usr WHERE tag='$tagnya'";
               $resultuser = mysqli_query($con, $stmt);
               $user = mysqli_fetch_array($resultuser);
-
               mysqli_close($con);
-
               echo "<br>";
               echo "Hello, ";
               echo '<b>' . $user["firstName"] . " " . $user["lastName"] . '</b><br><br>';
               echo "Here " . '<b>' . $user["firstName"] . '</b>' . " Profile: " . '<br>';
               
-
               echo "Email    : ";
               echo $user["email"] . '<br>';
-
               echo "Birthday : ";
               echo $user["birthDate"] . '<br>';
-
               $host = "localhost";
               $username = "root";
               $dbname = "disparity";
@@ -586,7 +559,6 @@ body{
               $connStatus = $con->query($stmt);
               $numberOfRows = mysqli_num_rows($connStatus) - 1;
               mysqli_close($con);
-
               echo "Friends  : ";
               echo $numberOfRows . " friends";
             ?>
@@ -608,14 +580,11 @@ body{
             $stmt = "SELECT * FROM usr";
             $connStatus = $con->query($stmt);
             $numberOfRows = mysqli_num_rows($connStatus) - 1;
-
             $cekUser = $_SESSION["id"];
             $stmtfriendlist = "SELECT * FROM usr WHERE email != '$cekUser'";
             $resultfriend = mysqli_query($con, $stmtfriendlist);
             $friends = mysqli_fetch_array($resultfriend);
-
             $result = mysqli_query($con, $stmtfriendlist);
-
             echo "<br>";
             echo "<table>";
             while($row = mysqli_fetch_assoc($result))
@@ -626,7 +595,6 @@ body{
                 echo "<tr>";
                   echo "<td>";
                   echo "<script type='text/javascript'>" . $user["profilePicture"] . ";</script>";
-
                   if ( $row["profilePicture"] != null)
                   {
                     echo '
@@ -646,13 +614,11 @@ body{
                     </form>';
                   }
                     
-
                     // echo '
                     // <form id = "id_visit_profile"  method="post" action="visit_profile.php">
                     //   </button>
                     //   <input name="name_visit_profile" type="image" src="avatar.png" value="' . $row['tag'] . '" style="width:50px">
                     // </form>';
-
                   echo "</td>";
                   echo "<td>";
                       echo "<p class=" . '"w3-left"' . "style=" . '"margin-left: 10px; color: white;"' . ">" . $friend_firstname . " " . $friend_lastname . "</p>";
@@ -689,7 +655,6 @@ body{
  
 <script>
 $(document).ready(function() {
-
   $("#idFormPost").submit(function() {
      document.getElementById("idPostTextarea").value = document.getElementById("idPostP").innerHTML;
     var dataform = $(this).serialize(); 
@@ -744,7 +709,6 @@ $(document).ready(function() {
     });
     return false;
   });
-
   $("#home").submit(function() {
     var dataform = $(this).serialize(); 
     $.ajax({
@@ -762,7 +726,6 @@ $(document).ready(function() {
     });
     return false;
   });
-
   $("form[name='nameDeletePost']").submit(function() {
     var dataform = $(this).serialize(); 
     $.ajax({
@@ -780,7 +743,6 @@ $(document).ready(function() {
     });
     return false;
   });
-
   $("form[name='nameDeleteComment']").submit(function() {
     var dataform = $(this).serialize(); 
     $.ajax({
@@ -798,8 +760,6 @@ $(document).ready(function() {
     });
     return false;
   });
-
-
 });
 var btn = document.getElementById('idLogOut');
     btn.addEventListener('click', function() {
@@ -855,25 +815,20 @@ function showPreview(objFileInput) {
     fileReader.readAsDataURL(objFileInput.files[0]);
   }
 }
-
 // Get the modal
 var modal = document.getElementById('myModal');
-
 // Get the image and insert it inside the modal - use its "alt" text as a caption
 var img = document.getElementById('myImg');
 var img2 = document.getElementById('myImg');
 var view = document.getElementById('myView');
 var modalImg = document.getElementById("img01");
 var captionText = document.getElementById("caption");
-
 view.onclick = function(){
   modal.style.display = "block";
   modalImg.src = img.src;
 }
-
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
-
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() { 
   modal.style.display = "none";
